@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aventura KoiAike — Patagonia a tu medida</title>
+<meta name="description" content="Viajes 100% personalizados por la Carretera Austral, Aysén, Patagonia chilena. Sin paquetes fijos — tú decides, nosotros lo hacemos posible.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600;700&display=swap');
+
+:root{
+  --bg-deep:   #0d1210;
+  --bg:        #161f1b;
+  --moss:      #2c362a;
+  --moss-lt:   #3d4a3a;
+  --copper:    #c97d3f;
+  --copper-lt: #e0a468;
+  --copper-d:  #8a5a35;
+  --stone:     #e8e2d4;
+  --stone-dim: #a8a294;
+  --nav-h:     72px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Work Sans', sans-serif;
+  background: var(--bg-deep);
+  color: var(--stone);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+img{max-width:100%; display:block;}
+.lang-toggle [data-lang]{display:none;}
+.lang-toggle [data-lang].active{display:inline;}
+[data-es],[data-en],[data-pt]{display:none;}
+.lang-es [data-es]{display:inline-block;}
+.lang-en [data-en]{display:inline-block;}
+.lang-pt [data-pt]{display:inline-block;}
+.lang-es span[data-es], .lang-en span[data-en], .lang-pt span[data-pt]{display:inline;}
+
+h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em;}
+
+/* ---------- NAV ---------- */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  height:var(--nav-h);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 2rem;
+  background:rgba(13,18,16,0.72);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(201,125,63,0.12);
+  transition: background .3s ease;
+}
+.nav-logo{display:flex; align-items:center; gap:10px; text-decoration:none;}
+.nav-logo img{height:42px; width:42px; object-fit:contain; border-radius:50%;}
+.nav-logo-text{font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:var(--stone); line-height:1.1;}
+.nav-logo-sub{font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--copper-lt); display:block;}
+.nav-links{display:flex; align-items:center; gap:2rem;}
+.nav-links a{color:var(--stone-dim); text-decoration:none; font-size:.85rem; letter-spacing:.04em; text-transform:uppercase; transition:color .2s;}
+.nav-links a:hover{color:var(--copper-lt);}
+.lang-switch{display:flex; gap:.4rem; border-left:1px solid rgba(232,226,212,0.18); padding-left:1.2rem;}
+.lang-btn{background:none; border:1px solid rgba(232,226,212,0.25); color:var(--stone-dim); font-size:.7rem; letter-spacing:.05em; padding:.3rem .55rem; border-radius:2px; cursor:pointer; transition:all .2s;}
+.lang-btn.active{background:var(--copper); border-color:var(--copper); color:var(--bg-deep); font-weight:600;}
+.mob-toggle{display:none; background:none; border:none; color:var(--stone); font-size:1.6rem; cursor:pointer;}
+
+@media (max-width:860px){
+  .nav-links{display:none;}
+  .mob-toggle{display:block;}
+}
+.mobile-menu{
+  position:fixed; top:var(--nav-h); left:0; right:0; z-index:199;
+  background:var(--bg-deep); border-bottom:1px solid rgba(201,125,63,0.15);
+  padding:1.5rem 2rem; display:none; flex-direction:column; gap:1.2rem;
+}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--stone); text-decoration:none; font-size:1rem; letter-spacing:.03em;}
+.mobile-menu .lang-switch{padding-left:0; border-left:none; padding-top:.5rem; border-top:1px solid rgba(232,226,212,0.15);}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(rgba(13,18,16,0.35), rgba(13,18,16,0.75)), url('https://aventurakoiaike.cl/wp-content/uploads/2024/11/IMG_0734.jpeg') center/cover no-repeat;
+  text-align:center; padding:2rem;
+}
+.hero-inner{max-width:780px;}
+.hero-eyebrow{font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; color:var(--copper-lt); margin-bottom:1.4rem;}
+.hero h1{font-size:clamp(2.4rem, 6vw, 4.4rem); line-height:1.04; color:var(--stone); margin-bottom:1.3rem;}
+.hero-desc{font-size:clamp(1rem, 1.6vw, 1.2rem); color:var(--stone); opacity:.92; max-width:560px; margin:0 auto 2.2rem; font-weight:300;}
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:var(--copper); color:var(--bg-deep); border:none;
+  padding:.95rem 2.1rem; font-size:.85rem; letter-spacing:.06em; text-transform:uppercase; font-weight:600;
+  border-radius:2px; text-decoration:none; cursor:pointer; transition:background .2s, transform .2s;
+}
+.btn:hover{background:var(--copper-lt); transform:translateY(-1px);}
+.btn-outline{background:none; border:1px solid var(--copper-lt); color:var(--copper-lt);}
+.btn-outline:hover{background:rgba(201,125,63,0.12);}
+.btn-icon{display:inline-flex; align-items:center; gap:.5rem;}
+.hero-scroll{position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%); color:var(--stone-dim); font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:.5rem;}
+.hero-scroll::after{content:''; width:1px; height:28px; background:linear-gradient(var(--copper-lt), transparent); animation:scrollpulse 2s ease-in-out infinite;}
+@keyframes scrollpulse{0%,100%{opacity:.3;} 50%{opacity:1;}}
+
+/* ---------- FADE-IN ON SCROLL ---------- */
+.reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+.reveal.visible{opacity:1; transform:translateY(0);}
+
+/* ---------- PHILOSOPHY ---------- */
+.philosophy{padding:7rem 2rem; background:var(--bg); text-align:center;}
+.philosophy-inner{max-width:760px; margin:0 auto;}
+.section-eyebrow{font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--copper-lt); margin-bottom:1.2rem;}
+.philosophy h2{font-size:clamp(1.7rem, 3.4vw, 2.6rem); margin-bottom:1.6rem; line-height:1.18;}
+.philosophy p{color:var(--stone-dim); font-size:1.08rem; max-width:600px; margin:0 auto 1.2rem;}
+.philosophy-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:2.2rem; margin-top:3.5rem; text-align:left;}
+@media (max-width:760px){.philosophy-grid{grid-template-columns:1fr;}}
+.phil-card{border-top:1px solid rgba(201,125,63,0.3); padding-top:1.3rem;}
+.phil-card h3{font-size:1.1rem; color:var(--stone); margin-bottom:.6rem; font-weight:600;}
+.phil-card p{font-size:.92rem; color:var(--stone-dim); margin:0;}
+
+/* ---------- MAP PLACEHOLDER ---------- */
+.map-section{padding:6rem 2rem; background:var(--bg-deep); text-align:center;}
+.map-section .section-eyebrow{margin-bottom:.8rem;}
+.map-section h2{font-size:clamp(1.6rem,3.2vw,2.3rem); margin-bottom:.6rem;}
+.map-section .sub{color:var(--stone-dim); font-size:.95rem; margin-bottom:3rem;}
+.map-placeholder{
+  max-width:880px; margin:0 auto;
+  border:1px dashed rgba(201,125,63,0.35);
+  border-radius:6px;
+  padding:5rem 2rem;
+  background:linear-gradient(160deg, var(--bg) 0%, var(--bg-deep) 100%);
+  color:var(--stone-dim); font-size:.9rem;
+}
+.map-placeholder strong{color:var(--copper-lt); display:block; margin-bottom:.5rem; font-family:'Fraunces',serif; font-size:1.1rem;}
+
+/* ---------- GALLERY ---------- */
+.gallery{padding:6rem 0 7rem; background:var(--bg);}
+.gallery-head{text-align:center; padding:0 2rem; margin-bottom:3.5rem;}
+.gallery-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem);}
+.bento{
+  display:grid; gap:.6rem; max-width:1240px; margin:0 auto; padding:0 1.2rem;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:220px;
+}
+.bento figure{position:relative; overflow:hidden; border-radius:3px; margin:0;}
+.bento figure img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
+.bento figure:hover img{transform:scale(1.06);}
+.bento figcaption{
+  position:absolute; left:0; right:0; bottom:0;
+  padding:1.1rem .9rem .8rem;
+  background:linear-gradient(transparent, rgba(13,18,16,0.85));
+  font-size:.82rem; letter-spacing:.03em; color:var(--stone);
+}
+.bento .b1{grid-column:span 2; grid-row:span 2;}
+.bento .b2{grid-column:span 2; grid-row:span 1;}
+.bento .b3{grid-column:span 1; grid-row:span 1;}
+.bento .b4{grid-column:span 1; grid-row:span 1;}
+.bento .b5{grid-column:span 2; grid-row:span 1;}
+@media (max-width:760px){
+  .bento{grid-template-columns:repeat(2,1fr); grid-auto-rows:180px;}
+  .bento .b1{grid-column:span 2; grid-row:span 2;}
+  .bento .b2,.bento .b5{grid-column:span 2; grid-row:span 1;}
+  .bento .b3,.bento .b4{grid-column:span 1;}
+}
+
+/* ---------- CONTACT ---------- */
+.contact{padding:7rem 2rem 8rem; background:var(--bg-deep); text-align:center;}
+.contact-inner{max-width:600px; margin:0 auto;}
+.contact h2{font-size:clamp(1.8rem,3.6vw,2.6rem); margin-bottom:1.2rem;}
+.contact p{color:var(--stone-dim); font-size:1.05rem; margin-bottom:2.6rem;}
+.contact-actions{display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-bottom:2.8rem;}
+.contact-direct{display:flex; flex-direction:column; gap:.6rem; color:var(--stone-dim); font-size:.92rem;}
+.contact-direct a{color:var(--stone); text-decoration:none; border-bottom:1px solid rgba(201,125,63,0.4);}
+.contact-direct a:hover{color:var(--copper-lt);}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--bg-deep); border-top:1px solid rgba(201,125,63,0.12); padding:3rem 2rem 2.2rem; text-align:center;}
+footer img{height:50px; width:50px; object-fit:contain; border-radius:50%; margin:0 auto 1rem;}
+footer .f-name{font-family:'Fraunces',serif; font-size:1rem; color:var(--stone); margin-bottom:.3rem;}
+footer .f-loc{color:var(--stone-dim); font-size:.8rem; margin-bottom:1.4rem;}
+footer .f-copy{color:var(--stone-dim); font-size:.74rem; opacity:.7;}
+</style>
+</head>
+<body class="lang-es">
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="data:image/png;base64,data:image/png;base64,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" alt="Aventura KoiAike">
+    <span>
+      <span class="nav-logo-text">Aventura KoiAike</span>
+      <span class="nav-logo-sub">Patagonia Chilena</span>
+    </span>
+  </a>
+  <div class="nav-links">
+    <a href="#filosofia" data-es="Filosofía" data-en="Philosophy" data-pt="Filosofia">Filosofía</a>
+    <a href="#mapa" data-es="Territorio" data-en="Territory" data-pt="Território">Territorio</a>
+    <a href="#galeria" data-es="Galería" data-en="Gallery" data-pt="Galeria">Galería</a>
+    <a href="#contacto" data-es="Contacto" data-en="Contact" data-pt="Contato">Contacto</a>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-setlang="es">ES</button>
+      <button class="lang-btn" data-setlang="en">EN</button>
+      <button class="lang-btn" data-setlang="pt">PT</button>
+    </div>
+  </div>
+  <button class="mob-toggle" id="mobToggle">&#9776;</button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#filosofia" data-es="Filosofía" data-en="Philosophy" data-pt="Filosofia">Filosofía</a>
+  <a href="#mapa" data-es="Territorio" data-en="Territory" data-pt="Território">Territorio</a>
+  <a href="#galeria" data-es="Galería" data-en="Gallery" data-pt="Galeria">Galería</a>
+  <a href="#contacto" data-es="Contacto" data-en="Contact" data-pt="Contato">Contacto</a>
+  <div class="lang-switch">
+    <button class="lang-btn active" data-setlang="es">ES</button>
+    <button class="lang-btn" data-setlang="en">EN</button>
+    <button class="lang-btn" data-setlang="pt">PT</button>
+  </div>
+</div>
+
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow" data-es="Carretera Austral, Aysén" data-en="Carretera Austral, Aysén" data-pt="Carretera Austral, Aysén">Carretera Austral, Aysén</p>
+    <h1 data-es="Tu viaje, a tu manera" data-en="Your journey, your way" data-pt="Sua viagem, do seu jeito">Tu viaje, a tu manera</h1>
+    <p class="hero-desc" data-es="No vendemos paquetes. Diseñamos contigo la aventura que quieres vivir en la Patagonia chilena." data-en="We don't sell packages. We design the adventure you want to live in Chilean Patagonia, together with you." data-pt="Não vendemos pacotes. Desenhamos com você a aventura que quer viver na Patagônia chilena.">No vendemos paquetes. Diseñamos contigo la aventura que quieres vivir en la Patagonia chilena.</p>
+    <a href="#contacto" class="btn" data-es="Cuéntanos tu viaje" data-en="Tell us your trip" data-pt="Conte-nos sua viagem">Cuéntanos tu viaje</a>
+  </div>
+  <div class="hero-scroll" data-es="Descubre más" data-en="Discover more" data-pt="Descubra mais">Descubre más</div>
+</section>
+
+<section class="philosophy reveal" id="filosofia">
+  <div class="philosophy-inner">
+    <p class="section-eyebrow" data-es="Nuestra filosofía" data-en="Our philosophy" data-pt="Nossa filosofia">Nuestra filosofía</p>
+    <h2 data-es="La Patagonia no es un catálogo — es una invitación abierta" data-en="Patagonia is not a catalog — it's an open invitation" data-pt="A Patagônia não é um catálogo — é um convite aberto">La Patagonia no es un catálogo — es una invitación abierta</h2>
+    <p data-es="Cada viajero llega con su propio ritmo, su propia curiosidad. Por eso no tenemos itinerarios fijos: conversamos contigo, entendemos qué buscas, y construimos un viaje que es solo tuyo." data-en="Every traveler arrives with their own pace, their own curiosity. That's why we don't have fixed itineraries: we talk with you, understand what you're looking for, and build a journey that's truly yours." data-pt="Cada viajante chega com seu próprio ritmo, sua própria curiosidade. Por isso não temos roteiros fixos: conversamos com você, entendemos o que procura, e construímos uma viagem que é só sua.">Cada viajero llega con su propio ritmo, su propia curiosidad. Por eso no tenemos itinerarios fijos: conversamos contigo, entendemos qué buscas, y construimos un viaje que es solo tuyo.</p>
+
+    <div class="philosophy-grid">
+      <div class="phil-card">
+        <h3 data-es="A tu medida" data-en="Tailored to you" data-pt="Sob medida">A tu medida</h3>
+        <p data-es="Tú decides la duración, el ritmo y las actividades. Nosotros nos encargamos de que todo funcione." data-en="You decide the length, the pace and the activities. We take care of making it all work." data-pt="Você decide a duração, o ritmo e as atividades. Nós cuidamos para que tudo funcione.">Tú decides la duración, el ritmo y las actividades. Nosotros nos encargamos de que todo funcione.</p>
+      </div>
+      <div class="phil-card">
+        <h3 data-es="Sin paquetes rígidos" data-en="No rigid packages" data-pt="Sem pacotes rígidos">Sin paquetes rígidos</h3>
+        <p data-es="No verás precios fijos ni programas cerrados aquí. Cada propuesta nace de una conversación real." data-en="You won't find fixed prices or closed programs here. Every proposal comes from a real conversation." data-pt="Você não vai encontrar preços fixos ou programas fechados aqui. Cada proposta nasce de uma conversa real.">No verás precios fijos ni programas cerrados aquí. Cada propuesta nace de una conversación real.</p>
+      </div>
+      <div class="phil-card">
+        <h3 data-es="Guías locales certificados" data-en="Certified local guides" data-pt="Guias locais certificados">Guías locales certificados</h3>
+        <p data-es="Conocemos el territorio porque vivimos en él. Guías WFR/WAFA, vehículos 4x4 y un equipo que conoce cada ruta." data-en="We know the territory because we live in it. WFR/WAFA certified guides, 4x4 vehicles and a team that knows every route." data-pt="Conhecemos o território porque vivemos nele. Guias certificados WFR/WAFA, veículos 4x4 e uma equipe que conhece cada rota.">Conocemos el territorio porque vivimos en él. Guías WFR/WAFA, vehículos 4x4 y un equipo que conoce cada ruta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="map-section reveal" id="mapa">
+  <p class="section-eyebrow" data-es="El territorio" data-en="The territory" data-pt="O território">El territorio</p>
+  <h2 data-es="Aysén, de punta a punta" data-en="Aysén, from end to end" data-pt="Aysén, de ponta a ponta">Aysén, de punta a punta</h2>
+  <p class="sub" data-es="Un mapa interactivo está en preparación" data-en="An interactive map is in preparation" data-pt="Um mapa interativo está em preparação">Un mapa interactivo está en preparación</p>
+  <div class="map-placeholder">
+    <strong data-es="Mapa interactivo — próximamente" data-en="Interactive map — coming soon" data-pt="Mapa interativo — em breve">Mapa interactivo — próximamente</strong>
+    <span data-es="Aquí los viajeros podrán explorar el territorio de Aysén y descubrir cada rincón a través de fotos reales." data-en="Here travelers will be able to explore the Aysén territory and discover every corner through real photos." data-pt="Aqui os viajantes poderão explorar o território de Aysén e descobrir cada canto através de fotos reais.">Aquí los viajeros podrán explorar el territorio de Aysén y descubrir cada rincón a través de fotos reales.</span>
+  </div>
+</section>
+
+<section class="gallery reveal" id="galeria">
+  <div class="gallery-head">
+    <p class="section-eyebrow" data-es="Algunas postales" data-en="A few postcards" data-pt="Alguns cartões-postais">Algunas postales</p>
+    <h2 data-es="Lo que encontrarás en el camino" data-en="What you'll find along the way" data-pt="O que você vai encontrar pelo caminho">Lo que encontrarás en el camino</h2>
+  </div>
+  <div class="bento">
+    <figure class="b1"><img src="https://aventurakoiaike.cl/wp-content/uploads/2024/11/exploradores-1-e1731623224676.jpeg" alt="Glaciar Exploradores" loading="lazy"><figcaption>Glaciar Exploradores</figcaption></figure>
+    <figure class="b2"><img src="https://aventurakoiaike.cl/wp-content/uploads/2024/11/IMG_0734.jpeg" alt="Puerto Río Tranquilo" loading="lazy"><figcaption>Puerto Río Tranquilo</figcaption></figure>
+    <figure class="b3"><img src="https://aventurakoiaike.cl/wp-content/uploads/2024/11/WhatsApp-Image-2024-10-02-at-12.21.43.jpeg" alt="Parque Nacional Queulat" loading="lazy"><figcaption>Parque Nac. Queulat</figcaption></figure>
+    <figure class="b4"><img src="https://aventurakoiaike.cl/wp-content/uploads/2024/11/WhatsApp-Image-2024-10-02-at-12.21.42-1.jpeg" alt="Reserva Cerro Castillo" loading="lazy"><figcaption>Reserva Cerro Castillo</figcaption></figure>
+    <figure class="b5"><img src="https://aventurakoiaike.cl/wp-content/uploads/2024/11/WhatsApp-Image-2024-10-04-at-13.33.21-1.jpeg" alt="Reserva Nacional de Coyhaique" loading="lazy"><figcaption>Reserva Nac. de Coyhaique</figcaption></figure>
+  </div>
+</section>
+
+<section class="contact reveal" id="contacto">
+  <div class="contact-inner">
+    <p class="section-eyebrow" data-es="Empecemos a planear" data-en="Let's start planning" data-pt="Vamos começar a planejar">Empecemos a planear</p>
+    <h2 data-es="Cuéntanos qué viaje tienes en mente" data-en="Tell us what trip you have in mind" data-pt="Conte-nos que viagem você tem em mente">Cuéntanos qué viaje tienes en mente</h2>
+    <p data-es="Fechas, número de personas, tipo de experiencia — escríbenos y diseñamos juntos los detalles." data-en="Dates, number of people, type of experience — write to us and we'll design the details together." data-pt="Datas, número de pessoas, tipo de experiência — escreva para nós e desenhamos os detalhes juntos.">Fechas, número de personas, tipo de experiencia — escríbenos y diseñamos juntos los detalles.</p>
+    <div class="contact-actions">
+      <a class="btn" id="mailto-btn" href="#" data-es="Escribir por correo" data-en="Write an email" data-pt="Escrever um e-mail">Escribir por correo</a>
+      <a class="btn btn-outline" id="whatsapp-btn" href="#" target="_blank" rel="noopener" data-es="Escribir por WhatsApp" data-en="Write on WhatsApp" data-pt="Escrever no WhatsApp">Escribir por WhatsApp</a>
+      <a class="btn btn-outline btn-icon" href="https://www.instagram.com/aventurakoiaike/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <span>Instagram</span>
+      </a>
+    </div>
+    <div class="contact-direct">
+      <span>info@aventurakoiaike.cl</span>
+      <span data-es="Coyhaique, Aysén, Chile" data-en="Coyhaique, Aysén, Chile" data-pt="Coyhaique, Aysén, Chile">Coyhaique, Aysén, Chile</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="data:image/png;base64,data:image/png;base64,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" alt="Aventura KoiAike">
+  <div class="f-name">Aventura KoiAike</div>
+  <div class="f-loc" data-es="Coyhaique, Aysén, Patagonia Chilena" data-en="Coyhaique, Aysén, Chilean Patagonia" data-pt="Coyhaique, Aysén, Patagônia Chilena">Coyhaique, Aysén, Patagonia Chilena</div>
+  <div class="f-copy">&copy; 2026 Aventura KoiAike</div>
+</footer>
+
+<script>
+// ---- i18n ----
+function setLang(lang){
+  document.body.className = 'lang-' + lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.setlang === lang));
+  localStorage.setItem('koiaike_lang', lang);
+  updateContactLinks(lang);
+}
+document.querySelectorAll('[data-setlang]').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.setlang));
+});
+(function(){
+  try{
+    var saved = localStorage.getItem('koiaike_lang');
+    var nav = (navigator.language||'es').slice(0,2);
+    var start = saved || (['es','en','pt'].includes(nav) ? nav : 'es');
+    setLang(start);
+  }catch(e){ setLang('es'); }
+})();
+
+// ---- contact links ----
+const mailSubjects = {
+  es: "Quiero planificar mi viaje a Aysén",
+  en: "I'd like to plan my trip to Aysén",
+  pt: "Quero planejar minha viagem a Aysén"
+};
+const waMessages = {
+  es: "Hola! Quiero planificar un viaje a Aysén con Aventura KoiAike.",
+  en: "Hi! I'd like to plan a trip to Aysén with Aventura KoiAike.",
+  pt: "Olá! Quero planejar uma viagem a Aysén com Aventura KoiAike."
+};
+function updateContactLinks(lang){
+  const subj = encodeURIComponent(mailSubjects[lang] || mailSubjects.es);
+  document.getElementById('mailto-btn').href = `mailto:info@aventurakoiaike.cl?subject=${subj}`;
+  const wa = encodeURIComponent(waMessages[lang] || waMessages.es);
+  document.getElementById('whatsapp-btn').href = `https://wa.me/56998376591?text=${wa}`;
+}
+
+// ---- mobile menu ----
+const mobToggle = document.getElementById('mobToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+mobToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+// ---- reveal on scroll ----
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:.15});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
