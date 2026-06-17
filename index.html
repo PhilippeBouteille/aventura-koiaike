@@ -320,10 +320,17 @@ function updateContactLinks(lang){
 }
 
 // ---- i18n ----
+function applyTranslations(lang){
+  document.querySelectorAll('[data-es]').forEach(el => {
+    const text = el.dataset[lang] || el.dataset.es;
+    if (text !== undefined) el.textContent = text;
+  });
+}
 function setLang(lang){
   document.body.className = 'lang-' + lang;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.setlang === lang));
   localStorage.setItem('koiaike_lang', lang);
+  applyTranslations(lang);
   updateContactLinks(lang);
 }
 document.querySelectorAll('[data-setlang]').forEach(btn => {
