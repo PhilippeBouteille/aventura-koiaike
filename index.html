@@ -301,6 +301,24 @@ footer .f-copy{color:var(--stone-dim); font-size:.74rem; opacity:.7;}
 </footer>
 
 <script>
+// ---- contact links (déclaré avant setLang car appelé par celui-ci) ----
+const mailSubjects = {
+  es: "Quiero planificar mi viaje a Aysén",
+  en: "I'd like to plan my trip to Aysén",
+  pt: "Quero planejar minha viagem a Aysén"
+};
+const waMessages = {
+  es: "Hola! Quiero planificar un viaje a Aysén con Aventura KoiAike.",
+  en: "Hi! I'd like to plan a trip to Aysén with Aventura KoiAike.",
+  pt: "Olá! Quero planejar uma viagem a Aysén com Aventura KoiAike."
+};
+function updateContactLinks(lang){
+  const subj = encodeURIComponent(mailSubjects[lang] || mailSubjects.es);
+  document.getElementById('mailto-btn').href = `mailto:info@aventurakoiaike.cl?subject=${subj}`;
+  const wa = encodeURIComponent(waMessages[lang] || waMessages.es);
+  document.getElementById('whatsapp-btn').href = `https://wa.me/56998376591?text=${wa}`;
+}
+
 // ---- i18n ----
 function setLang(lang){
   document.body.className = 'lang-' + lang;
@@ -319,24 +337,6 @@ document.querySelectorAll('[data-setlang]').forEach(btn => {
     setLang(start);
   }catch(e){ setLang('es'); }
 })();
-
-// ---- contact links ----
-const mailSubjects = {
-  es: "Quiero planificar mi viaje a Aysén",
-  en: "I'd like to plan my trip to Aysén",
-  pt: "Quero planejar minha viagem a Aysén"
-};
-const waMessages = {
-  es: "Hola! Quiero planificar un viaje a Aysén con Aventura KoiAike.",
-  en: "Hi! I'd like to plan a trip to Aysén with Aventura KoiAike.",
-  pt: "Olá! Quero planejar uma viagem a Aysén com Aventura KoiAike."
-};
-function updateContactLinks(lang){
-  const subj = encodeURIComponent(mailSubjects[lang] || mailSubjects.es);
-  document.getElementById('mailto-btn').href = `mailto:info@aventurakoiaike.cl?subject=${subj}`;
-  const wa = encodeURIComponent(waMessages[lang] || waMessages.es);
-  document.getElementById('whatsapp-btn').href = `https://wa.me/56998376591?text=${wa}`;
-}
 
 // ---- mobile menu ----
 const mobToggle = document.getElementById('mobToggle');
