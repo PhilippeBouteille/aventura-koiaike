@@ -37,10 +37,11 @@ img{max-width:100%; display:block;}
 .lang-toggle [data-lang]{display:none;}
 .lang-toggle [data-lang].active{display:inline;}
 [data-es],[data-en],[data-pt]{display:none;}
-.lang-es [data-es]{display:inline-block;}
-.lang-en [data-en]{display:inline-block;}
-.lang-pt [data-pt]{display:inline-block;}
-.lang-es span[data-es], .lang-en span[data-en], .lang-pt span[data-pt]{display:inline;}
+.lang-es [data-es]{display:revert;}
+.lang-en [data-en]{display:revert;}
+.lang-pt [data-pt]{display:revert;}
+.lang-es .hero-scroll[data-es], .lang-en .hero-scroll[data-en], .lang-pt .hero-scroll[data-pt]{display:flex;}
+.lang-es .btn[data-es], .lang-en .btn[data-en], .lang-pt .btn[data-pt]{display:inline-flex;}
 
 h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em;}
 
