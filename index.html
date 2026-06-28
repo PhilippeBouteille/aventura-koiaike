@@ -80,10 +80,14 @@ nav{
 /* ---------- HERO ---------- */
 .hero{
   position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center;
-  background: linear-gradient(rgba(13,18,16,0.35), rgba(13,18,16,0.75)), url('https://aventurakoiaike.cl/wp-content/uploads/2024/11/IMG_0734.jpeg') center/cover no-repeat;
-  text-align:center; padding:2rem;
+  text-align:center; padding:2rem; overflow:hidden;
 }
-.hero-inner{max-width:780px;}
+.hero::before{
+  content:''; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(rgba(13,18,16,0.35), rgba(13,18,16,0.75));
+}
+.hero-video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;}
+.hero-inner{max-width:780px; position:relative; z-index:2;}
 .hero-eyebrow{font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; color:var(--copper-lt); margin-bottom:1.4rem;}
 .hero h1{font-size:clamp(2.4rem, 6vw, 4.4rem); line-height:1.04; color:var(--stone); margin-bottom:1.3rem;}
 .hero-desc{font-size:clamp(1rem, 1.6vw, 1.2rem); color:var(--stone); opacity:.92; max-width:560px; margin:0 auto 2.2rem; font-weight:300;}
@@ -97,7 +101,7 @@ nav{
 .btn-outline{background:none; border:1px solid var(--copper-lt); color:var(--copper-lt);}
 .btn-outline:hover{background:rgba(201,125,63,0.12);}
 .btn-icon{display:inline-flex; align-items:center; gap:.5rem;}
-.hero-scroll{position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%); color:var(--stone-dim); font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:.5rem;}
+.hero-scroll{position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%); z-index:2; color:var(--stone-dim); font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:.5rem;}
 .hero-scroll::after{content:''; width:1px; height:28px; background:linear-gradient(var(--copper-lt), transparent); animation:scrollpulse 2s ease-in-out infinite;}
 @keyframes scrollpulse{0%,100%{opacity:.3;} 50%{opacity:1;}}
 
@@ -221,6 +225,9 @@ footer .f-copy{color:var(--stone-dim); font-size:.74rem; opacity:.7;}
 </div>
 
 <section class="hero" id="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="/hero-poster.jpg">
+    <source src="/hero-video.mp4" type="video/mp4">
+  </video>
   <div class="hero-inner">
     <p class="hero-eyebrow" data-es="Carretera Austral, Aysén" data-en="Carretera Austral, Aysén" data-pt="Carretera Austral, Aysén">Carretera Austral, Aysén</p>
     <h1 data-es="Tu viaje, a tu manera" data-en="Your journey, your way" data-pt="Sua viagem, do seu jeito">Tu viaje, a tu manera</h1>
