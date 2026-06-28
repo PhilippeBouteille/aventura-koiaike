@@ -11,6 +11,7 @@
 :root{
   --bg-deep:   #0d1210;
   --bg:        #161f1b;
+  --azul-oscuro: #151a30;
   --moss:      #2c362a;
   --moss-lt:   #3d4a3a;
   --copper:    #c97d3f;
@@ -47,13 +48,13 @@ nav{
   height:var(--nav-h);
   display:flex; align-items:center; justify-content:space-between;
   padding:0 2rem;
-  background:rgba(13,18,16,0.72);
+  background:rgba(21,26,48,0.72);
   backdrop-filter:blur(10px);
   border-bottom:1px solid rgba(201,125,63,0.12);
   transition: background .3s ease;
 }
 .nav-logo{display:flex; align-items:center; gap:10px; text-decoration:none;}
-.nav-logo img{height:42px; width:42px; object-fit:contain; border-radius:50%;}
+.nav-logo img{height:52px; width:52px; object-fit:contain; border-radius:50%;}
 .nav-logo-text{font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:var(--stone); line-height:1.1;}
 .nav-logo-sub{font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--copper-lt); display:block;}
 .nav-links{display:flex; align-items:center; gap:2rem;}
@@ -70,7 +71,7 @@ nav{
 }
 .mobile-menu{
   position:fixed; top:var(--nav-h); left:0; right:0; z-index:199;
-  background:var(--bg-deep); border-bottom:1px solid rgba(201,125,63,0.15);
+  background:var(--azul-oscuro); border-bottom:1px solid rgba(201,125,63,0.15);
   padding:1.5rem 2rem; display:none; flex-direction:column; gap:1.2rem;
 }
 .mobile-menu.open{display:flex;}
@@ -181,8 +182,8 @@ nav{
 .contact-direct a:hover{color:var(--copper-lt);}
 
 /* ---------- FOOTER ---------- */
-footer{background:var(--bg-deep); border-top:1px solid rgba(201,125,63,0.12); padding:3rem 2rem 2.2rem; text-align:center;}
-footer img{height:50px; width:50px; object-fit:contain; border-radius:50%; margin:0 auto 1rem;}
+footer{background:var(--azul-oscuro); border-top:1px solid rgba(201,125,63,0.12); padding:3rem 2rem 2.2rem; text-align:center;}
+footer img{height:120px; width:auto; object-fit:contain; margin:0 auto 1rem;}
 footer .f-name{font-family:'Fraunces',serif; font-size:1rem; color:var(--stone); margin-bottom:.3rem;}
 footer .f-loc{color:var(--stone-dim); font-size:.8rem; margin-bottom:1.4rem;}
 footer .f-copy{color:var(--stone-dim); font-size:.74rem; opacity:.7;}
@@ -314,8 +315,7 @@ footer .f-copy{color:var(--stone-dim); font-size:.74rem; opacity:.7;}
 </section>
 
 <footer>
-  <img src="https://raw.githubusercontent.com/PhilippeBouteille/aventura-koiaike/main/Logos/LOGO-PRINCIPAL.png" alt="Aventura KoiAike">
-  <div class="f-name">Aventura KoiAike</div>
+  <img src="https://raw.githubusercontent.com/PhilippeBouteille/aventura-koiaike/main/Logos/LOGO-SECUNDARIO.png" alt="Aventura KoiAike">
   <div class="f-loc" data-es="Coyhaique, Aysén, Patagonia Chilena" data-en="Coyhaique, Aysén, Chilean Patagonia" data-pt="Coyhaique, Aysén, Patagônia Chilena">Coyhaique, Aysén, Patagonia Chilena</div>
   <div class="f-copy">&copy; 2026 Aventura KoiAike</div>
 </footer>
