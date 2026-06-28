@@ -321,7 +321,7 @@ footer .f-copy{color:var(--stone-dim); font-size:.74rem; opacity:.7;}
     <h2 data-es="Cuéntanos qué viaje tienes en mente" data-en="Tell us what trip you have in mind" data-pt="Conte-nos que viagem você tem em mente">Cuéntanos qué viaje tienes en mente</h2>
     <p data-es="Fechas, número de personas, tipo de experiencia — escríbenos y diseñamos juntos los detalles." data-en="Dates, number of people, type of experience — write to us and we'll design the details together." data-pt="Datas, número de pessoas, tipo de experiência — escreva para nós e desenhamos os detalhes juntos.">Fechas, número de personas, tipo de experiencia — escríbenos y diseñamos juntos los detalles.</p>
     <div class="contact-actions">
-      <a class="btn" id="mailto-btn" href="#" data-es="Escribir por correo" data-en="Write an email" data-pt="Escrever um e-mail">Escribir por correo</a>
+      <a class="btn btn-outline" id="mailto-btn" href="#" data-es="Escribir por correo" data-en="Write an email" data-pt="Escrever um e-mail">Escribir por correo</a>
       <a class="btn btn-outline" id="whatsapp-btn" href="#" target="_blank" rel="noopener" data-es="Escribir por WhatsApp" data-en="Write on WhatsApp" data-pt="Escrever no WhatsApp">Escribir por WhatsApp</a>
       <a class="btn btn-outline btn-icon ig-btn" href="https://www.instagram.com/aventurakoiaike/" target="_blank" rel="noopener" aria-label="Instagram">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -376,6 +376,7 @@ function setLang(lang){
   localStorage.setItem('koiaike_lang', lang);
   applyTranslations(lang);
   updateContactLinks(lang);
+  if (window.cookieConsent && window.cookieConsent.refreshLang) window.cookieConsent.refreshLang(lang);
 }
 document.querySelectorAll('[data-setlang]').forEach(btn => {
   btn.addEventListener('click', () => setLang(btn.dataset.setlang));

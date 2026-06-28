@@ -114,8 +114,8 @@
     return T[nav] ? nav : 'es';
   }
 
-  const lang = detectLang();
-  const t = T[lang];
+  let lang = detectLang();
+  let t = T[lang];
 
   // ─── Cookie banner ────────────────────────────────────────────────────────
   const CONSENT_KEY = 'cookie_consent_v1';
@@ -253,7 +253,24 @@
     init();
   }
 
+  // ─── Resynchronisation si le site change de langue après l'injection ─────
+  function refreshLang(newLang) {
+    if (!T[newLang] || newLang === lang) return;
+    lang = newLang;
+    t = T[lang];
+    const banner = document.getElementById('cc-banner');
+    if (banner && !localStorage.getItem(CONSENT_KEY)) {
+      banner.remove();
+      injectBanner();
+    }
+    const overlay = document.getElementById('cc-policy-overlay');
+    if (overlay) {
+      overlay.remove();
+      showPolicy();
+    }
+  }
+
   // Expose pour usage manuel
-  window.cookieConsent = { showPolicy };
+  window.cookieConsent = { showPolicy, refreshLang };
 
 })();
