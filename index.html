@@ -139,20 +139,44 @@ nav{
 .team-bio p:last-child{margin-bottom:0;}
 @media (max-width:680px){.team-block{flex-direction:column; text-align:center;}}
 
-/* ---------- MAP PLACEHOLDER ---------- */
+/* ---------- INTERACTIVE MAP ---------- */
 .map-section{padding:6rem 2rem; background:var(--azul-oscuro); text-align:center;}
 .map-section .section-eyebrow{margin-bottom:.8rem; color:var(--amarillo);}
 .map-section h2{font-size:clamp(1.6rem,3.2vw,2.3rem); margin-bottom:.6rem;}
 .map-section .sub{color:var(--stone-dim); font-size:.95rem; margin-bottom:3rem;}
-.map-placeholder{
-  max-width:880px; margin:0 auto;
-  border:1px dashed rgba(248,177,51,0.35);
-  border-radius:6px;
-  padding:5rem 2rem;
-  background:linear-gradient(160deg, var(--azul-oscuro-lt) 0%, var(--azul-oscuro) 100%);
-  color:var(--stone-dim); font-size:.9rem;
+.map-interactive{max-width:880px; margin:0 auto;}
+.map-frame{position:relative; width:100%; border-radius:8px; overflow:hidden; border:1px solid rgba(248,177,51,0.2); line-height:0;}
+.map-frame img{width:100%; display:block;}
+.map-pin{
+  position:absolute; transform:translate(-50%,-50%);
+  width:20px; height:20px; padding:0; border:none; background:none; cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
 }
-.map-placeholder strong{color:var(--amarillo); display:block; margin-bottom:.5rem; font-family:'Fraunces',serif; font-size:1.1rem;}
+.map-pin-dot{
+  display:block; width:100%; height:100%; border-radius:50%;
+  background:var(--naranjo); border:2px solid var(--stone);
+  box-shadow:0 1px 4px rgba(0,0,0,.4);
+  animation:pinpulse 2.4s ease-out infinite;
+  transition:background .2s;
+}
+.map-pin:hover .map-pin-dot, .map-pin:focus-visible .map-pin-dot{background:var(--amarillo);}
+@keyframes pinpulse{
+  0%{box-shadow:0 0 0 0 rgba(232,78,27,.5), 0 1px 4px rgba(0,0,0,.4);}
+  70%{box-shadow:0 0 0 11px rgba(232,78,27,0), 0 1px 4px rgba(0,0,0,.4);}
+  100%{box-shadow:0 0 0 0 rgba(232,78,27,0), 0 1px 4px rgba(0,0,0,.4);}
+}
+@media (max-width:680px){.map-pin{width:16px; height:16px;}}
+
+/* map modal */
+.map-modal{position:fixed; inset:0; z-index:300; display:none; align-items:center; justify-content:center; background:rgba(21,26,48,0.85); padding:1.5rem;}
+.map-modal.open{display:flex;}
+.map-modal-inner{background:var(--azul-oscuro-lt); border:1px solid rgba(248,177,51,0.25); border-radius:8px; max-width:420px; width:100%; padding:1.6rem; position:relative; text-align:left;}
+.map-modal-close{position:absolute; top:.6rem; right:.7rem; background:none; border:none; color:var(--stone-dim); font-size:1.7rem; line-height:1; cursor:pointer; padding:.3rem;}
+.map-modal-close:hover{color:var(--amarillo);}
+.map-modal-photo{width:100%; aspect-ratio:4/3; border-radius:5px; overflow:hidden; margin-bottom:1.1rem; background:rgba(232,226,212,0.06); display:flex; align-items:center; justify-content:center;}
+.map-modal-photo img{width:100%; height:100%; object-fit:cover;}
+.map-modal-photo span{color:var(--stone-dim); font-size:.85rem; padding:1rem; text-align:center;}
+.map-modal h3{color:var(--amarillo); font-size:1.15rem; margin-bottom:0; font-family:'Fraunces',serif;}
 
 /* ---------- GALLERY ---------- */
 .gallery{padding:6rem 0 7rem; background:var(--amarillo);}
@@ -294,12 +318,41 @@ footer .f-copy{color:var(--stone-dim); font-size:.74rem; opacity:.7;}
 <section class="map-section reveal" id="mapa">
   <p class="section-eyebrow" data-es="El territorio" data-en="The territory" data-pt="O território">El territorio</p>
   <h2 data-es="Aysén, de punta a punta" data-en="Aysén, from end to end" data-pt="Aysén, de ponta a ponta">Aysén, de punta a punta</h2>
-  <p class="sub" data-es="Un mapa interactivo está en preparación" data-en="An interactive map is in preparation" data-pt="Um mapa interativo está em preparação">Un mapa interactivo está en preparación</p>
-  <div class="map-placeholder">
-    <strong data-es="Mapa interactivo — próximamente" data-en="Interactive map — coming soon" data-pt="Mapa interativo — em breve">Mapa interactivo — próximamente</strong>
-    <span data-es="Aquí los viajeros podrán explorar el territorio de Aysén y descubrir cada rincón a través de fotos reales." data-en="Here travelers will be able to explore the Aysén territory and discover every corner through real photos." data-pt="Aqui os viajantes poderão explorar o território de Aysén e descobrir cada canto através de fotos reais.">Aquí los viajeros podrán explorar el territorio de Aysén y descubrir cada rincón a través de fotos reales.</span>
+  <p class="sub" data-es="Toca cada punto para descubrir el lugar" data-en="Tap each point to discover the place" data-pt="Toque em cada ponto para descobrir o lugar">Toca cada punto para descubrir el lugar</p>
+  <div class="map-interactive">
+    <div class="map-frame">
+      <img src="https://raw.githubusercontent.com/PhilippeBouteille/aventura-koiaike/main/Mapa/mapa-aysen.jpg" alt="Mapa ilustrado de la Región de Aysén, Carretera Austral" loading="lazy">
+      <button class="map-pin" style="left:64%;top:13%" data-place="la-junta" aria-label="La Junta"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:73%;top:15%" data-place="lago-verde" aria-label="Lago Verde"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:58%;top:20%" data-place="puerto-cisnes" aria-label="Puerto Cisnes"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:78%;top:20%" data-place="queulat" aria-label="Parque Nacional Queulat"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:70%;top:34%" data-place="coyhaique" aria-label="Coyhaique"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:67%;top:28%" data-place="puerto-aysen" aria-label="Puerto Aysén"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:38%;top:36%" data-place="puerto-chacabuco" aria-label="Puerto Chacabuco"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:58%;top:40%" data-place="cerro-castillo" aria-label="Parque Nacional Cerro Castillo"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:75%;top:40%" data-place="balmaceda" aria-label="Balmaceda"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:80%;top:43%" data-place="ibanez" aria-label="Puerto Ingeniero Ibáñez"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:74%;top:48%" data-place="general-carrera" aria-label="Lago General Carrera"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:76%;top:50%" data-place="chile-chico" aria-label="Chile Chico"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:48%;top:50%" data-place="laguna-san-rafael" aria-label="Parque Nacional Laguna San Rafael"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:70%;top:54%" data-place="capillas-marmol" aria-label="Capillas de Mármol"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:58%;top:62%" data-place="hielo-norte" aria-label="Campos de Hielo Norte"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:70%;top:66%" data-place="cochrane" aria-label="Cochrane"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:63%;top:73%" data-place="villa-ohiggins" aria-label="Villa O'Higgins"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:65%;top:75%" data-place="caleta-tortel" aria-label="Caleta Tortel"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:55%;top:85%" data-place="hielo-sur" aria-label="Campos de Hielo Sur"><span class="map-pin-dot"></span></button>
+      <button class="map-pin" style="left:63%;top:86%" data-place="fin-carretera" aria-label="Fin Carretera Austral"><span class="map-pin-dot"></span></button>
+    </div>
   </div>
 </section>
+
+<div class="map-modal" id="mapModal">
+  <div class="map-modal-inner">
+    <button class="map-modal-close" id="mapModalClose" aria-label="Cerrar">&times;</button>
+    <div class="map-modal-photo" id="mapModalPhoto"></div>
+    <h3 id="mapModalTitle"></h3>
+  </div>
+</div>
 
 <section class="gallery reveal" id="galeria">
   <div class="gallery-head">
@@ -401,6 +454,58 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, {threshold:.15});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ---- interactive map ----
+const mapPlaces = {
+  'la-junta':          { name:{es:'La Junta', en:'La Junta', pt:'La Junta'}, photo:null },
+  'lago-verde':        { name:{es:'Lago Verde', en:'Lago Verde', pt:'Lago Verde'}, photo:null },
+  'puerto-cisnes':     { name:{es:'Puerto Cisnes', en:'Puerto Cisnes', pt:'Puerto Cisnes'}, photo:null },
+  'queulat':           { name:{es:'Parque Nacional Queulat', en:'Queulat National Park', pt:'Parque Nacional Queulat'}, photo:'https://aventurakoiaike.cl/wp-content/uploads/2024/11/WhatsApp-Image-2024-10-02-at-12.21.43.jpeg' },
+  'puerto-aysen':      { name:{es:'Puerto Aysén', en:'Puerto Aysén', pt:'Puerto Aysén'}, photo:null },
+  'puerto-chacabuco':  { name:{es:'Puerto Chacabuco', en:'Puerto Chacabuco', pt:'Puerto Chacabuco'}, photo:null },
+  'coyhaique':         { name:{es:'Coyhaique', en:'Coyhaique', pt:'Coyhaique'}, photo:'https://aventurakoiaike.cl/wp-content/uploads/2024/11/WhatsApp-Image-2024-10-04-at-13.33.21-1.jpeg' },
+  'cerro-castillo':    { name:{es:'Parque Nacional Cerro Castillo', en:'Cerro Castillo National Park', pt:'Parque Nacional Cerro Castillo'}, photo:'https://aventurakoiaike.cl/wp-content/uploads/2024/11/WhatsApp-Image-2024-10-02-at-12.21.42-1.jpeg' },
+  'balmaceda':         { name:{es:'Balmaceda', en:'Balmaceda', pt:'Balmaceda'}, photo:null },
+  'ibanez':            { name:{es:'Puerto Ingeniero Ibáñez', en:'Puerto Ingeniero Ibáñez', pt:'Puerto Ingeniero Ibáñez'}, photo:null },
+  'general-carrera':   { name:{es:'Lago General Carrera', en:'Lago General Carrera', pt:'Lago General Carrera'}, photo:'https://aventurakoiaike.cl/wp-content/uploads/2024/11/exploradores-1-e1731623224676.jpeg' },
+  'chile-chico':       { name:{es:'Chile Chico', en:'Chile Chico', pt:'Chile Chico'}, photo:null },
+  'laguna-san-rafael': { name:{es:'Parque Nacional Laguna San Rafael', en:'Laguna San Rafael National Park', pt:'Parque Nacional Laguna San Rafael'}, photo:null },
+  'capillas-marmol':   { name:{es:'Capillas de Mármol', en:'Marble Caves', pt:'Capelas de Mármore'}, photo:'https://aventurakoiaike.cl/wp-content/uploads/2024/11/IMG_0734.jpeg' },
+  'hielo-norte':       { name:{es:'Campos de Hielo Norte', en:'Northern Patagonian Ice Field', pt:'Campo de Gelo Norte'}, photo:null },
+  'cochrane':          { name:{es:'Cochrane', en:'Cochrane', pt:'Cochrane'}, photo:null },
+  'villa-ohiggins':    { name:{es:"Villa O'Higgins", en:"Villa O'Higgins", pt:"Villa O'Higgins"}, photo:null },
+  'caleta-tortel':     { name:{es:'Caleta Tortel', en:'Caleta Tortel', pt:'Caleta Tortel'}, photo:null },
+  'hielo-sur':         { name:{es:'Campos de Hielo Sur', en:'Southern Patagonian Ice Field', pt:'Campo de Gelo Sul'}, photo:null },
+  'fin-carretera':     { name:{es:'Fin Carretera Austral', en:'End of the Carretera Austral', pt:'Fim da Carretera Austral'}, photo:null }
+};
+const photoPendingText = {es:'Foto próximamente', en:'Photo coming soon', pt:'Foto em breve'};
+const mapModal = document.getElementById('mapModal');
+const mapModalPhoto = document.getElementById('mapModalPhoto');
+const mapModalTitle = document.getElementById('mapModalTitle');
+
+function currentLang(){
+  return document.body.className.replace('lang-','') || 'es';
+}
+function openMapModal(key){
+  const place = mapPlaces[key];
+  if(!place) return;
+  const lang = currentLang();
+  mapModalTitle.textContent = place.name[lang] || place.name.es;
+  if(place.photo){
+    mapModalPhoto.innerHTML = `<img src="${place.photo}" alt="${place.name[lang] || place.name.es}" loading="lazy">`;
+  } else {
+    const pending = photoPendingText[lang] || photoPendingText.es;
+    mapModalPhoto.innerHTML = `<span>${pending}</span>`;
+  }
+  mapModal.classList.add('open');
+}
+function closeMapModal(){ mapModal.classList.remove('open'); }
+document.querySelectorAll('.map-pin').forEach(btn => {
+  btn.addEventListener('click', () => openMapModal(btn.dataset.place));
+});
+document.getElementById('mapModalClose').addEventListener('click', closeMapModal);
+mapModal.addEventListener('click', e => { if(e.target === mapModal) closeMapModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMapModal(); });
 </script>
 
 <script>
