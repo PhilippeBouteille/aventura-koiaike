@@ -51,22 +51,21 @@ nav{
   height:var(--nav-h);
   display:flex; align-items:center; justify-content:space-between;
   padding:0 2rem;
-  background:rgba(21,26,48,0.72);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(248,177,51,0.15);
+  background:var(--amarillo);
+  border-bottom:1px solid rgba(21,26,48,0.15);
   transition: background .3s ease;
 }
 .nav-logo{display:flex; align-items:center; gap:10px; text-decoration:none;}
 .nav-logo img{height:52px; width:52px; object-fit:contain; border-radius:50%;}
-.nav-logo-text{font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:var(--stone); line-height:1.1;}
-.nav-logo-sub{font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--amarillo); display:block;}
+.nav-logo-text{font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:var(--azul-oscuro); line-height:1.1;}
+.nav-logo-sub{font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--azul-oscuro); opacity:.75; display:block;}
 .nav-links{display:flex; align-items:center; gap:2rem;}
-.nav-links a{color:var(--stone-dim); text-decoration:none; font-size:.85rem; letter-spacing:.04em; text-transform:uppercase; transition:color .2s;}
-.nav-links a:hover{color:var(--amarillo);}
-.lang-switch{display:flex; gap:.4rem; border-left:1px solid rgba(232,226,212,0.18); padding-left:1.2rem;}
-.lang-btn{background:none; border:1px solid rgba(232,226,212,0.25); color:var(--stone-dim); font-size:.7rem; letter-spacing:.05em; padding:.3rem .55rem; border-radius:2px; cursor:pointer; transition:all .2s;}
+.nav-links a{color:var(--azul-oscuro); text-decoration:none; font-size:.85rem; letter-spacing:.04em; text-transform:uppercase; transition:color .2s;}
+.nav-links a:hover{color:var(--naranjo);}
+.lang-switch{display:flex; gap:.4rem; border-left:1px solid rgba(21,26,48,0.22); padding-left:1.2rem;}
+.lang-btn{background:none; border:1px solid rgba(21,26,48,0.35); color:var(--azul-oscuro); font-size:.7rem; letter-spacing:.05em; padding:.3rem .55rem; border-radius:2px; cursor:pointer; transition:all .2s;}
 .lang-btn.active{background:var(--naranjo); border-color:var(--naranjo); color:#fff; font-weight:600;}
-.mob-toggle{display:none; background:none; border:none; color:var(--stone); font-size:1.6rem; cursor:pointer;}
+.mob-toggle{display:none; background:none; border:none; color:var(--azul-oscuro); font-size:1.6rem; cursor:pointer;}
 
 @media (max-width:860px){
   .nav-links{display:none;}
@@ -74,12 +73,12 @@ nav{
 }
 .mobile-menu{
   position:fixed; top:var(--nav-h); left:0; right:0; z-index:199;
-  background:var(--azul-oscuro); border-bottom:1px solid rgba(248,177,51,0.15);
+  background:var(--amarillo); border-bottom:1px solid rgba(21,26,48,0.15);
   padding:1.5rem 2rem; display:none; flex-direction:column; gap:1.2rem;
 }
 .mobile-menu.open{display:flex;}
-.mobile-menu a{color:var(--stone); text-decoration:none; font-size:1rem; letter-spacing:.03em;}
-.mobile-menu .lang-switch{padding-left:0; border-left:none; padding-top:.5rem; border-top:1px solid rgba(232,226,212,0.15);}
+.mobile-menu a{color:var(--azul-oscuro); text-decoration:none; font-size:1rem; letter-spacing:.03em;}
+.mobile-menu .lang-switch{padding-left:0; border-left:none; padding-top:.5rem; border-top:1px solid rgba(21,26,48,0.18);}
 
 /* ---------- HERO ---------- */
 .hero{
@@ -192,7 +191,7 @@ nav{
   grid-auto-rows:220px;
 }
 .bento figure{position:relative; overflow:hidden; border-radius:3px; margin:0;}
-.bento figure img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
+.bento figure img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease, opacity .45s ease;}
 .bento figure:hover img{transform:scale(1.06);}
 .bento figcaption{
   position:absolute; left:0; right:0; bottom:0;
@@ -205,12 +204,22 @@ nav{
 .bento .b3{grid-column:span 1; grid-row:span 1;}
 .bento .b4{grid-column:span 1; grid-row:span 1;}
 .bento .b5{grid-column:span 2; grid-row:span 1;}
+.bento .b6{grid-column:span 2; grid-row:span 1; cursor:pointer;}
+.bento .b6 img{transition:opacity .5s ease, transform .6s ease;}
+.bento figure{cursor:pointer;}
 @media (max-width:760px){
   .bento{grid-template-columns:repeat(2,1fr); grid-auto-rows:180px;}
   .bento .b1{grid-column:span 2; grid-row:span 2;}
-  .bento .b2,.bento .b5{grid-column:span 2; grid-row:span 1;}
+  .bento .b2,.bento .b5,.bento .b6{grid-column:span 2; grid-row:span 1;}
   .bento .b3,.bento .b4{grid-column:span 1;}
 }
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox{position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; background:rgba(10,13,26,0.92); padding:2rem; opacity:0; pointer-events:none; transition:opacity .2s ease;}
+.lightbox.open{opacity:1; pointer-events:auto;}
+.lightbox img{max-width:100%; max-height:100%; border-radius:4px; box-shadow:0 10px 40px rgba(0,0,0,.5);}
+.lightbox-close{position:absolute; top:1.2rem; right:1.5rem; background:none; border:none; color:var(--stone); font-size:2.2rem; line-height:1; cursor:pointer; padding:.3rem;}
+.lightbox-close:hover{color:var(--amarillo);}
 
 /* ---------- CONTACT ---------- */
 .contact{padding:7rem 2rem 8rem; background:var(--azul-oscuro); text-align:center;}
@@ -224,13 +233,13 @@ nav{
 .contact-direct a:hover{color:var(--amarillo);}
 
 /* ---------- FOOTER ---------- */
-footer{background:var(--azul-oscuro); border-top:1px solid rgba(248,177,51,0.12); padding:3rem 2rem 2.2rem; text-align:center;}
+footer{background:var(--naranjo); border-top:1px solid rgba(255,255,255,0.18); padding:3rem 2rem 2.2rem; text-align:center;}
 footer img{height:120px; width:auto; object-fit:contain; margin:0 auto 1rem;}
-.f-policy{display:block; margin-top:.8rem; font-size:.78rem; color:var(--stone-dim); text-decoration:underline; cursor:pointer;}
+.f-policy{display:block; margin-top:.8rem; font-size:.78rem; color:rgba(255,255,255,0.8); text-decoration:underline; cursor:pointer;}
 .f-policy:hover{color:var(--amarillo);}
-footer .f-name{font-family:'Fraunces',serif; font-size:1rem; color:var(--stone); margin-bottom:.3rem;}
-footer .f-loc{color:var(--stone-dim); font-size:.8rem; margin-bottom:1.4rem;}
-footer .f-copy{color:var(--stone-dim); font-size:.74rem; opacity:.7;}
+footer .f-name{font-family:'Fraunces',serif; font-size:1rem; color:#fff; margin-bottom:.3rem;}
+footer .f-loc{color:rgba(255,255,255,0.85); font-size:.8rem; margin-bottom:1.4rem;}
+footer .f-copy{color:rgba(255,255,255,0.7); font-size:.74rem;}
 </style>
 </head>
 <body class="lang-es">
@@ -349,6 +358,11 @@ footer .f-copy{color:var(--stone-dim); font-size:.74rem; opacity:.7;}
   </div>
 </section>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
 <div class="map-modal" id="mapModal">
   <div class="map-modal-inner">
     <button class="map-modal-close" id="mapModalClose" aria-label="Cerrar">&times;</button>
@@ -363,11 +377,12 @@ footer .f-copy{color:var(--stone-dim); font-size:.74rem; opacity:.7;}
     <h2 data-es="Lo que encontrarás en el camino" data-en="What you'll find along the way" data-pt="O que você vai encontrar pelo caminho">Lo que encontrarás en el camino</h2>
   </div>
   <div class="bento">
-    <figure class="b1"><img src="https://aventurakoiaike.cl/wp-content/uploads/2024/11/exploradores-1-e1731623224676.jpeg" alt="Glaciar Exploradores" loading="lazy"><figcaption>Glaciar Exploradores</figcaption></figure>
-    <figure class="b2"><img src="https://aventurakoiaike.cl/wp-content/uploads/2024/11/IMG_0734.jpeg" alt="Puerto Río Tranquilo" loading="lazy"><figcaption>Puerto Río Tranquilo</figcaption></figure>
-    <figure class="b3"><img src="https://aventurakoiaike.cl/wp-content/uploads/2024/11/WhatsApp-Image-2024-10-02-at-12.21.43.jpeg" alt="Parque Nacional Queulat" loading="lazy"><figcaption>Parque Nac. Queulat</figcaption></figure>
-    <figure class="b4"><img src="https://aventurakoiaike.cl/wp-content/uploads/2024/11/WhatsApp-Image-2024-10-02-at-12.21.42-1.jpeg" alt="Reserva Cerro Castillo" loading="lazy"><figcaption>Reserva Cerro Castillo</figcaption></figure>
-    <figure class="b5"><img src="https://aventurakoiaike.cl/wp-content/uploads/2024/11/WhatsApp-Image-2024-10-04-at-13.33.21-1.jpeg" alt="Reserva Nacional de Coyhaique" loading="lazy"><figcaption>Reserva Nac. de Coyhaique</figcaption></figure>
+    <figure class="b1"><img alt="" loading="lazy"><figcaption></figcaption></figure>
+    <figure class="b2"><img alt="" loading="lazy"><figcaption></figcaption></figure>
+    <figure class="b3"><img alt="" loading="lazy"><figcaption></figcaption></figure>
+    <figure class="b4"><img alt="" loading="lazy"><figcaption></figcaption></figure>
+    <figure class="b5"><img alt="" loading="lazy"><figcaption></figcaption></figure>
+    <figure class="b6"><img alt="" loading="lazy"><figcaption></figcaption></figure>
   </div>
 </section>
 
@@ -530,6 +545,70 @@ if(supportsHover){
 document.getElementById('mapModalClose').addEventListener('click', closeMapModal);
 mapModal.addEventListener('click', e => { if(e.target === mapModal) closeMapModal(); });
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMapModal(); });
+
+// ---- galería: las 6 fotos giran en rotación + lightbox ----
+const postalesBase = 'https://raw.githubusercontent.com/PhilippeBouteille/aventura-koiaike/main/Postales/';
+const allPostales = [
+  { file:'CARO1.jpeg', caption:'Lago Caro' },
+  { file:'PNCCHuemules1.jpeg', caption:'Parque Nac. Cerro Castillo' },
+  { file:'LosTorreones2.jpeg', caption:'Villa Los Torreones' },
+  { file:'DesagueChelenko2.jpeg', caption:'Desagüe Chelenko' },
+  { file:'ParedonManos2.jpeg', caption:'Paredón de las Manos' },
+  { file:'Portezuelo2.jpeg', caption:'Portezuelo' },
+  { file:'WhatsApp Image 2024-10-02 at 12.21.42 (3).jpeg', caption:'' },
+  { file:'WhatsApp Image 2024-10-02 at 12.21.42 (4).jpeg', caption:'' },
+  { file:'WhatsApp Image 2025-05-29 at 08.50.56 (1).jpeg', caption:'' },
+  { file:'WhatsApp Image 2025-05-29 at 08.50.58.jpeg', caption:'' },
+  { file:'WhatsApp Image 2026-08-26 at 21.22.31.jpeg', caption:'' },
+  { file:'WhatsApp Image 2026-08-26 at 21.23.31 (1).jpeg', caption:'' },
+  { file:'WhatsApp Image 2026-08-27 at 11.56.30.jpeg', caption:'' },
+  { file:'WhatsApp Image 2026-08-30 at 21.20.46.jpeg', caption:'' }
+].map(p => ({ src: postalesBase + encodeURIComponent(p.file), caption: p.caption }));
+
+const bentoFigures = document.querySelectorAll('.bento figure');
+bentoFigures.forEach((fig, i) => {
+  const tilePhotos = allPostales.filter((_, idx) => idx % bentoFigures.length === i);
+  const img = fig.querySelector('img');
+  const cap = fig.querySelector('figcaption');
+  let idx = 0;
+  function show(){
+    img.src = tilePhotos[idx].src;
+    img.alt = tilePhotos[idx].caption || '';
+    if(cap){
+      cap.textContent = tilePhotos[idx].caption || '';
+      cap.style.display = tilePhotos[idx].caption ? 'block' : 'none';
+    }
+  }
+  show();
+  if(tilePhotos.length > 1){
+    setInterval(() => {
+      img.style.opacity = 0;
+      setTimeout(() => {
+        idx = (idx + 1) % tilePhotos.length;
+        show();
+        img.style.opacity = 1;
+      }, 450);
+    }, 10000 + i * 350);
+  }
+});
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+function openLightbox(src, alt){
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || '';
+  lightbox.classList.add('open');
+}
+function closeLightbox(){ lightbox.classList.remove('open'); }
+document.querySelectorAll('.bento figure').forEach(fig => {
+  fig.addEventListener('click', () => {
+    const img = fig.querySelector('img');
+    if(img && img.src) openLightbox(img.src, img.alt);
+  });
+});
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if(e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
 </script>
 
 <script>
