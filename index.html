@@ -51,7 +51,7 @@ nav{
   height:var(--nav-h);
   display:flex; align-items:center; justify-content:space-between;
   padding:0 2rem;
-  background:var(--amarillo);
+  background:var(--crema);
   border-bottom:1px solid rgba(21,26,48,0.15);
   transition: background .3s ease;
 }
@@ -73,7 +73,7 @@ nav{
 }
 .mobile-menu{
   position:fixed; top:var(--nav-h); left:0; right:0; z-index:199;
-  background:var(--amarillo); border-bottom:1px solid rgba(21,26,48,0.15);
+  background:var(--crema); border-bottom:1px solid rgba(21,26,48,0.15);
   padding:1.5rem 2rem; display:none; flex-direction:column; gap:1.2rem;
 }
 .mobile-menu.open{display:flex;}
@@ -164,7 +164,11 @@ nav{
   70%{box-shadow:0 0 0 11px rgba(232,78,27,0), 0 1px 4px rgba(0,0,0,.4);}
   100%{box-shadow:0 0 0 0 rgba(232,78,27,0), 0 1px 4px rgba(0,0,0,.4);}
 }
-@media (max-width:680px){.map-pin{width:16px; height:16px;}}
+@media (max-width:680px){
+  .map-pin{width:12px; height:12px;}
+  .map-pin-dot{border-width:1px; animation:none; box-shadow:0 1px 3px rgba(0,0,0,.5);}
+}
+@media (max-width:420px){.map-pin{width:10px; height:10px;}}
 
 /* map modal */
 .map-modal{position:fixed; inset:0; z-index:300; display:flex; align-items:center; justify-content:center; background:rgba(21,26,48,0.85); padding:1.5rem; opacity:0; pointer-events:none; transition:opacity .18s ease;}
@@ -233,13 +237,13 @@ nav{
 .contact-direct a:hover{color:var(--amarillo);}
 
 /* ---------- FOOTER ---------- */
-footer{background:var(--naranjo); border-top:1px solid rgba(255,255,255,0.18); padding:3rem 2rem 2.2rem; text-align:center;}
+footer{background:var(--crema); border-top:1px solid rgba(21,26,48,0.12); padding:3rem 2rem 2.2rem; text-align:center;}
 footer img{height:120px; width:auto; object-fit:contain; margin:0 auto 1rem;}
-.f-policy{display:block; margin-top:.8rem; font-size:.78rem; color:rgba(255,255,255,0.8); text-decoration:underline; cursor:pointer;}
-.f-policy:hover{color:var(--amarillo);}
-footer .f-name{font-family:'Fraunces',serif; font-size:1rem; color:#fff; margin-bottom:.3rem;}
-footer .f-loc{color:rgba(255,255,255,0.85); font-size:.8rem; margin-bottom:1.4rem;}
-footer .f-copy{color:rgba(255,255,255,0.7); font-size:.74rem;}
+.f-policy{display:block; margin-top:.8rem; font-size:.78rem; color:rgba(21,26,48,0.65); text-decoration:underline; cursor:pointer;}
+.f-policy:hover{color:var(--naranjo);}
+footer .f-name{font-family:'Fraunces',serif; font-size:1rem; color:var(--azul-oscuro); margin-bottom:.3rem;}
+footer .f-loc{color:rgba(21,26,48,0.7); font-size:.8rem; margin-bottom:1.4rem;}
+footer .f-copy{color:rgba(21,26,48,0.55); font-size:.74rem;}
 </style>
 </head>
 <body class="lang-es">
