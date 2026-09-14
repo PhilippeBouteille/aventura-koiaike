@@ -179,18 +179,19 @@ nav.scrolled .mob-toggle{color:var(--stone);}
 }
 @media (max-width:420px){.map-pin{width:10px; height:10px;}}
 
-/* map modal */
-.map-modal{position:fixed; inset:0; z-index:300; display:flex; align-items:center; justify-content:center; background:rgba(21,26,48,0.85); padding:1.5rem; opacity:0; pointer-events:none; transition:opacity .18s ease;}
+/* map modal — même traitement que la lightbox galerie : plein écran sombre, photo à sa taille/forme d'origine, pas de carte */
+.map-modal{position:fixed; inset:0; z-index:300; display:flex; align-items:center; justify-content:center; background:rgba(10,13,26,0.92); padding:2rem; opacity:0; pointer-events:none; transition:opacity .18s ease;}
 .map-modal.open{opacity:1; pointer-events:auto;}
-.map-modal-inner{background:var(--azul-oscuro-lt); border:1px solid rgba(248,177,51,0.25); border-radius:8px; max-width:680px; width:100%; padding:1.6rem; position:relative; text-align:left;}
-.map-modal-close{position:absolute; top:.6rem; right:.7rem; background:none; border:none; color:var(--stone-dim); font-size:1.7rem; line-height:1; cursor:pointer; padding:.3rem;}
+.map-modal-close{position:absolute; top:1.2rem; right:1.5rem; background:none; border:none; color:var(--stone); font-size:2.2rem; line-height:1; cursor:pointer; padding:.3rem; z-index:1;}
 .map-modal-close:hover{color:var(--amarillo);}
-.map-modal-photo{width:100%; aspect-ratio:3/2; border-radius:5px; overflow:hidden; margin-bottom:1.1rem; background:rgba(232,226,212,0.06); display:flex; align-items:center; justify-content:center;}
-.map-modal-photo img{width:100%; height:100%; object-fit:cover;}
-.map-modal-photo span{color:var(--stone-dim); font-size:.85rem; padding:1rem; text-align:center;}
-.map-modal h3{color:var(--amarillo); font-size:1.15rem; margin-bottom:0; font-family:'Fraunces',serif;}
+.map-modal-content{position:relative; max-width:92vw; max-height:90vh; display:flex; flex-direction:column; align-items:center; gap:1rem;}
+.map-modal-photo{display:flex; align-items:center; justify-content:center;}
+.map-modal-photo img{max-width:88vw; max-height:74vh; width:auto; height:auto; display:block; border-radius:4px; box-shadow:0 10px 40px rgba(0,0,0,.5);}
+.map-modal-photo span{color:var(--stone-dim); font-size:.9rem; padding:1rem 1.4rem; text-align:center;}
+.map-modal h3{color:var(--amarillo); font-size:1.15rem; margin:0; font-family:'Fraunces',serif; text-align:center; text-shadow:0 2px 10px rgba(0,0,0,.7);}
 @media (max-width:760px){
-  .map-modal-inner{max-width:92vw;}
+  .map-modal-content{max-width:94vw;}
+  .map-modal-photo img{max-width:90vw; max-height:64vh;}
 }
 
 /* ---------- GALLERY ---------- */
@@ -376,8 +377,8 @@ footer .f-copy{color:rgba(21,26,48,0.55); font-size:.74rem;}
 </div>
 
 <div class="map-modal" id="mapModal">
-  <div class="map-modal-inner">
-    <button class="map-modal-close" id="mapModalClose" aria-label="Cerrar">&times;</button>
+  <button class="map-modal-close" id="mapModalClose" aria-label="Cerrar">&times;</button>
+  <div class="map-modal-content">
     <div class="map-modal-photo" id="mapModalPhoto"></div>
     <h3 id="mapModalTitle"></h3>
   </div>
@@ -558,9 +559,9 @@ document.querySelectorAll('.map-pin').forEach(btn => {
   }
 });
 if(supportsHover){
-  // le survol de la carte elle-même (pas le fond plein écran) garde la photo ouverte
-  document.querySelector('.map-modal-inner').addEventListener('mouseenter', cancelMapHoverClose);
-  document.querySelector('.map-modal-inner').addEventListener('mouseleave', scheduleMapHoverClose);
+  // le survol de la photo/titre elle-même (pas le fond plein écran) garde la photo ouverte
+  document.querySelector('.map-modal-content').addEventListener('mouseenter', cancelMapHoverClose);
+  document.querySelector('.map-modal-content').addEventListener('mouseleave', scheduleMapHoverClose);
 }
 document.getElementById('mapModalClose').addEventListener('click', closeMapModal);
 mapModal.addEventListener('click', e => { if(e.target === mapModal) closeMapModal(); });
