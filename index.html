@@ -115,11 +115,10 @@ nav.scrolled .mob-toggle{color:var(--stone);}
 .btn:hover{background:var(--naranjo-lt); transform:translateY(-1px);}
 .btn-outline{background:none; border:1px solid var(--naranjo); color:var(--naranjo);}
 .btn-outline:hover{background:rgba(232,78,27,0.12);}
-#whatsapp-btn{border-color:var(--azul-claro); color:var(--azul-claro);}
-#whatsapp-btn:hover{background:rgba(30,94,167,0.12);}
+#whatsapp-btn{border-color:var(--amarillo); color:var(--amarillo);}
+#whatsapp-btn:hover{background:rgba(248,177,51,0.12);}
 .ig-btn{border-color:var(--verde); color:var(--verde);}
 .ig-btn:hover{background:rgba(0,160,153,0.12);}
-.am-btn{border-color:var(--amarillo); color:var(--amarillo); opacity:.55; cursor:default;}
 .btn-icon{display:inline-flex; align-items:center; gap:.5rem;}
 
 /* ---------- FADE-IN ON SCROLL ---------- */
@@ -146,6 +145,47 @@ nav.scrolled .mob-toggle{color:var(--stone);}
 .team-bio p{margin:0 0 .9rem; text-align:justify;}
 .team-bio p:last-child{margin-bottom:0;}
 @media (max-width:680px){.team-block{flex-direction:column; text-align:center;}}
+
+/* ---------- EXPERIENCES ---------- */
+.experiences{padding:6.5rem 2rem 6rem; background:var(--verde);}
+.experiences .section-eyebrow{color:var(--amarillo); text-align:center;}
+.experiences-head{max-width:680px; margin:0 auto 4.5rem; text-align:center;}
+.experiences-head h2{font-size:clamp(1.6rem,3.2vw,2.4rem); color:var(--crema); margin-bottom:1.4rem; line-height:1.28;}
+.experiences-head p{color:var(--crema-dim); font-size:1.02rem; max-width:600px; margin:0 auto 1rem; text-align:justify;}
+.exp-list{max-width:1080px; margin:0 auto; display:flex; flex-direction:column; gap:4.5rem;}
+.exp-row{display:flex; align-items:center; gap:3rem;}
+.exp-row:nth-child(even){flex-direction:row-reverse;}
+.exp-row .exp-photo, .exp-row .exp-text{transition:transform .9s cubic-bezier(.16,.7,.2,1), opacity .9s ease;}
+.exp-row .exp-photo{transform:translateX(-70px); opacity:0;}
+.exp-row .exp-text{transform:translateX(70px); opacity:0;}
+.exp-row:nth-child(even) .exp-photo{transform:translateX(70px);}
+.exp-row:nth-child(even) .exp-text{transform:translateX(-70px);}
+.exp-row.in-view .exp-photo, .exp-row.in-view .exp-text{transform:translateX(0); opacity:1;}
+@media (max-width:760px){
+  .exp-row .exp-photo, .exp-row .exp-text,
+  .exp-row:nth-child(even) .exp-photo, .exp-row:nth-child(even) .exp-text{transform:translateY(30px);}
+  .exp-row.in-view .exp-photo, .exp-row.in-view .exp-text{transform:translateY(0);}
+}
+@media (prefers-reduced-motion: reduce){
+  .exp-row .exp-photo, .exp-row .exp-text{transition:none; transform:none; opacity:1;}
+}
+.exp-photo{flex:1 1 50%; aspect-ratio:4/3; border-radius:6px; overflow:hidden; background:var(--azul-oscuro-lt); display:flex; align-items:center; justify-content:center; border:1px solid rgba(21,26,48,0.25);}
+.exp-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+.exp-photo span{color:var(--stone-dim); font-size:.9rem; padding:1rem; text-align:center;}
+.exp-text{flex:1 1 50%;}
+.exp-text h3{font-size:1.25rem; color:var(--amarillo); margin-bottom:.5rem; letter-spacing:.02em;}
+.exp-lead{font-family:'Fraunces',serif; font-size:1.15rem; color:var(--crema); margin-bottom:.8rem; font-weight:500;}
+.exp-text p{color:var(--crema-dim); font-size:.98rem; margin:0 0 .8rem; text-align:justify;}
+.exp-text p:last-child{margin-bottom:0;}
+@media (max-width:760px){
+  .exp-row, .exp-row:nth-child(even){flex-direction:column;}
+  .exp-photo{width:100%;}
+}
+.exp-close{max-width:640px; margin:5.5rem auto 0; text-align:center;}
+.exp-close h3{font-size:clamp(1.5rem,3vw,2rem); color:var(--crema); margin-bottom:.8rem;}
+.exp-close-lead{font-family:'Fraunces',serif; font-size:1.2rem; color:var(--amarillo); margin-bottom:1rem;}
+.exp-close p{color:var(--crema-dim); font-size:1rem; margin-bottom:1rem; text-align:justify;}
+.exp-close-note{color:var(--crema-dim); font-size:.92rem; margin-bottom:1.6rem;}
 
 /* ---------- INTERACTIVE MAP ---------- */
 .map-section{padding:6rem 2rem; background:var(--azul-oscuro); text-align:center;}
@@ -268,6 +308,7 @@ footer .f-copy{color:rgba(21,26,48,0.55); font-size:.74rem;}
   </a>
   <div class="nav-links">
     <a href="#filosofia" data-es="Filosofía" data-en="Philosophy" data-pt="Filosofia">Filosofía</a>
+    <a href="#experiencias" data-es="Experiencias" data-en="Experiences" data-pt="Experiências">Experiencias</a>
     <a href="#mapa" data-es="Territorio" data-en="Territory" data-pt="Território">Territorio</a>
     <a href="#galeria" data-es="Galería" data-en="Gallery" data-pt="Galeria">Galería</a>
     <a href="#contacto" data-es="Contacto" data-en="Contact" data-pt="Contato">Contacto</a>
@@ -282,6 +323,7 @@ footer .f-copy{color:rgba(21,26,48,0.55); font-size:.74rem;}
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="#filosofia" data-es="Filosofía" data-en="Philosophy" data-pt="Filosofia">Filosofía</a>
+  <a href="#experiencias" data-es="Experiencias" data-en="Experiences" data-pt="Experiências">Experiencias</a>
   <a href="#mapa" data-es="Territorio" data-en="Territory" data-pt="Território">Territorio</a>
   <a href="#galeria" data-es="Galería" data-en="Gallery" data-pt="Galeria">Galería</a>
   <a href="#contacto" data-es="Contacto" data-en="Contact" data-pt="Contato">Contacto</a>
@@ -310,9 +352,7 @@ footer .f-copy{color:rgba(21,26,48,0.55); font-size:.74rem;}
     <h2 data-es="La Patagonia es una invitación abierta" data-en="Patagonia is an open invitation" data-pt="A Patagônia é um convite aberto">La Patagonia es una invitación abierta</h2>
     <p data-es="Cada viajero llega con su propio ritmo, su propia curiosidad. Por eso no tenemos itinerarios fijos: conversamos contigo, entendemos qué buscas, y construimos un viaje que es solo tuyo." data-en="Every traveler arrives with their own pace, their own curiosity. That's why we don't have fixed itineraries: we talk with you, understand what you're looking for, and build a journey that's truly yours." data-pt="Cada viajante chega com seu próprio ritmo, sua própria curiosidade. Por isso não temos roteiros fixos: conversamos com você, entendemos o que procura, e construímos uma viagem que é só sua.">Cada viajero llega con su propio ritmo, su propia curiosidad. Por eso no tenemos itinerarios fijos: conversamos contigo, entendemos qué buscas, y construimos un viaje que es solo tuyo.</p>
 
-    <p data-es="Nuestro propósito como empresa es entregar una experiencia de viaje inolvidable durante todo el período de tiempo en que nuestros aventureros visiten nuestra región de Aysén y en particular en las actividades que planifiquemos en conjunto con ellos, además de optimizar su tiempo durante sus aventuras en la región." data-en="Our purpose as a company is to deliver an unforgettable travel experience throughout the time our adventurers spend in our Aysén region — especially in the activities we plan together with them — while making the most of every moment of their adventure here." data-pt="Nosso propósito como empresa é proporcionar uma experiência de viagem inesquecível durante todo o tempo em que nossos aventureiros visitarem nossa região de Aysén, especialmente nas atividades que planejarmos junto com eles, além de otimizar o tempo deles durante suas aventuras na região.">Nuestro propósito como empresa es entregar una experiencia de viaje inolvidable durante todo el período de tiempo en que nuestros aventureros visiten nuestra región de Aysén y en particular en las actividades que planifiquemos en conjunto con ellos, además de optimizar su tiempo durante sus aventuras en la región.</p>
-
-    <p data-es="Queremos compartir nuestro amor por la región y los infinitos paisajes que te encuentras en cada kilómetro de viaje por la Carretera Austral, queremos hacernos parte de su grupo familiar o grupo de amigos y disfrutar a la par con ellos de las actividades." data-en="We want to share our love for this region and the endless landscapes you find at every kilometer along the Carretera Austral. We want to become part of your family or group of friends, and enjoy the activities right alongside you." data-pt="Queremos compartilhar nosso amor pela região e pelas paisagens infinitas que você encontra em cada quilômetro de viagem pela Carretera Austral. Queremos fazer parte do seu grupo familiar ou de amigos e aproveitar as atividades ao seu lado.">Queremos compartir nuestro amor por la región y los infinitos paisajes que te encuentras en cada kilómetro de viaje por la Carretera Austral, queremos hacernos parte de su grupo familiar o grupo de amigos y disfrutar a la par con ellos de las actividades.</p>
+    <p data-es="Queremos que aproveches cada día en Aysén. Conocemos sus rutas, sus tiempos y también esos lugares que no aparecen en todos los mapas. Por eso diseñamos contigo una experiencia que se adapte a tu ritmo, tus intereses y tu forma de viajar." data-en="We want you to make the most of every day in Aysén. We know its routes, its timing, and also those places that don't show up on every map. That's why we design an experience with you that fits your pace, your interests and your way of traveling." data-pt="Queremos que você aproveite cada dia em Aysén. Conhecemos suas rotas, seus tempos e também aqueles lugares que não aparecem em todos os mapas. Por isso desenhamos com você uma experiência que se adapta ao seu ritmo, aos seus interesses e à sua forma de viajar.">Queremos que aproveches cada día en Aysén. Conocemos sus rutas, sus tiempos y también esos lugares que no aparecen en todos los mapas. Por eso diseñamos contigo una experiencia que se adapte a tu ritmo, tus intereses y tu forma de viajar.</p>
 
     <div class="philosophy-grid">
       <div class="phil-card">
@@ -337,6 +377,79 @@ footer .f-copy{color:rgba(21,26,48,0.55); font-size:.74rem;}
         <p data-es="Juntos fundaron Aventura KoiAike para compartir, paso a paso, el territorio que aman." data-en="Together they founded Aventura KoiAike to share, step by step, the land they love." data-pt="Juntos fundaram a Aventura KoiAike para compartilhar, passo a passo, o território que amam.">Juntos fundaron Aventura KoiAike para compartir, paso a paso, el territorio que aman.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="experiences" id="experiencias">
+  <div class="experiences-head reveal">
+    <p class="section-eyebrow" data-es="Experiencias" data-en="Experiences" data-pt="Experiências">Experiencias</p>
+    <h2 data-es="Hay muchas formas de vivir la Patagonia. Encontremos la tuya." data-en="There are many ways to experience Patagonia. Let's find yours." data-pt="Há muitas formas de viver a Patagônia. Vamos encontrar a sua.">Hay muchas formas de vivir la Patagonia. Encontremos la tuya.</h2>
+    <p data-es="No trabajamos con una lista de paquetes rígidos. Queremos saber qué te mueve, cuánto tiempo tienes y con quién viajas para construir una experiencia que realmente tenga sentido para ti." data-en="We don't work with a list of rigid packages. We want to know what moves you, how much time you have and who you're traveling with, so we can build an experience that truly makes sense for you." data-pt="Não trabalhamos com uma lista de pacotes rígidos. Queremos saber o que te move, quanto tempo você tem e com quem viaja, para construir uma experiência que realmente faça sentido para você.">No trabajamos con una lista de paquetes rígidos. Queremos saber qué te mueve, cuánto tiempo tienes y con quién viajas para construir una experiencia que realmente tenga sentido para ti.</p>
+    <p data-es="Puedes venir con una idea clara o simplemente con ganas de conocer Aysén. Nosotros nos encargamos del resto." data-en="You can come with a clear idea or simply with the wish to discover Aysén. We take care of the rest." data-pt="Você pode vir com uma ideia clara ou simplesmente com vontade de conhecer Aysén. Nós cuidamos do resto.">Puedes venir con una idea clara o simplemente con ganas de conocer Aysén. Nosotros nos encargamos del resto.</p>
+  </div>
+
+  <div class="exp-list">
+    <div class="exp-row">
+      <div class="exp-photo"><img src="https://raw.githubusercontent.com/PhilippeBouteille/aventura-koiaike/main/Experiencias/carretera-austral.jpg" alt="Viajeros junto a la camioneta de Aventura KoiAike en el Lago General Carrera" data-alt-es="Viajeros junto a la camioneta de Aventura KoiAike en el Lago General Carrera" data-alt-en="Travelers next to the Aventura KoiAike truck at Lago General Carrera" data-alt-pt="Viajantes ao lado da caminhonete da Aventura KoiAike no Lago General Carrera" style="object-position:50% 50%" loading="lazy"></div>
+      <div class="exp-text">
+        <h3 data-es="Carretera Austral" data-en="Carretera Austral" data-pt="Carretera Austral">Carretera Austral</h3>
+        <p class="exp-lead" data-es="El viaje también está en el camino" data-en="The journey is part of the destination" data-pt="A viagem também está no caminho">El viaje también está en el camino</p>
+        <p data-es="Recorrer la Carretera Austral es mucho más que llegar a un destino. Miradores, cascadas, bosques, lagos, pequeños pueblos y esos lugares que descubrimos cuando nos damos el tiempo de parar. Diseñamos rutas de uno o varios días para recorrerla a tu ritmo." data-en="Traveling the Carretera Austral is much more than reaching a destination. Viewpoints, waterfalls, forests, lakes, small villages and those places we discover when we take the time to stop. We design one-day or multi-day routes so you can travel it at your own pace." data-pt="Percorrer a Carretera Austral é muito mais do que chegar a um destino. Miradouros, cachoeiras, bosques, lagos, pequenos vilarejos e aqueles lugares que descobrimos quando nos damos o tempo de parar. Desenhamos roteiros de um ou vários dias para percorrê-la no seu ritmo.">Recorrer la Carretera Austral es mucho más que llegar a un destino. Miradores, cascadas, bosques, lagos, pequeños pueblos y esos lugares que descubrimos cuando nos damos el tiempo de parar. Diseñamos rutas de uno o varios días para recorrerla a tu ritmo.</p>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-photo"><img src="https://raw.githubusercontent.com/PhilippeBouteille/aventura-koiaike/main/Experiencias/trekking-montana.jpg" alt="Grupo caminando por un sendero de estepa patagónica" data-alt-es="Grupo caminando por un sendero de estepa patagónica" data-alt-en="Group hiking a Patagonian steppe trail" data-alt-pt="Grupo caminhando por uma trilha da estepe patagônica" style="object-position:50% 85%" loading="lazy"></div>
+      <div class="exp-text">
+        <h3 data-es="Trekking &amp; Montaña" data-en="Trekking &amp; Mountain" data-pt="Trekking &amp; Montanha">Trekking &amp; Montaña</h3>
+        <p class="exp-lead" data-es="Camina la Patagonia" data-en="Walk through Patagonia" data-pt="Caminhe pela Patagônia">Camina la Patagonia</p>
+        <p data-es="Desde senderos tranquilos entre bosques y lagos hasta jornadas de montaña para quienes buscan un desafío mayor. Elegimos cada experiencia considerando tus intereses, experiencia y condición física. Aquí no se trata de llegar primero, sino de disfrutar el camino." data-en="From quiet trails between forests and lakes to mountain journeys for those seeking a greater challenge. We choose each experience considering your interests, experience and physical condition. Here it's not about arriving first, but about enjoying the way." data-pt="Desde trilhas tranquilas entre bosques e lagos até jornadas de montanha para quem busca um desafio maior. Escolhemos cada experiência considerando seus interesses, experiência e condição física. Aqui não se trata de chegar primeiro, mas de aproveitar o caminho.">Desde senderos tranquilos entre bosques y lagos hasta jornadas de montaña para quienes buscan un desafío mayor. Elegimos cada experiencia considerando tus intereses, experiencia y condición física. Aquí no se trata de llegar primero, sino de disfrutar el camino.</p>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-photo"><img src="https://raw.githubusercontent.com/PhilippeBouteille/aventura-koiaike/main/Experiencias/glaciares-navegacion.jpg" alt="Viajeros navegando frente a una cascada en un fiordo patagónico" data-alt-es="Viajeros navegando frente a una cascada en un fiordo patagónico" data-alt-en="Travelers sailing in front of a waterfall in a Patagonian fjord" data-alt-pt="Viajantes navegando diante de uma cachoeira em um fiorde patagônico" style="object-position:50% 32%" loading="lazy"></div>
+      <div class="exp-text">
+        <h3 data-es="Glaciares &amp; Navegación" data-en="Glaciers &amp; Navigation" data-pt="Glaciares &amp; Navegação">Glaciares &amp; Navegación</h3>
+        <p data-es="Navegar entre montañas, recorrer fiordos y lagos patagónicos o acercarte a un glaciar cambia completamente la perspectiva del territorio." data-en="Sailing between mountains, exploring Patagonian fjords and lakes, or getting close to a glacier completely changes your perspective on the territory." data-pt="Navegar entre montanhas, percorrer fiordes e lagos patagônicos ou se aproximar de uma geleira muda completamente a perspectiva do território.">Navegar entre montañas, recorrer fiordos y lagos patagónicos o acercarte a un glaciar cambia completamente la perspectiva del territorio.</p>
+        <p data-es="Te ayudamos a integrar estas experiencias dentro de tu viaje y a elegir las alternativas que mejor se adapten a la temporada y a tu ruta." data-en="We help you fit these experiences into your trip and choose the alternatives that best suit the season and your route." data-pt="Ajudamos você a integrar essas experiências na sua viagem e a escolher as alternativas que melhor se adaptem à temporada e à sua rota.">Te ayudamos a integrar estas experiencias dentro de tu viaje y a elegir las alternativas que mejor se adapten a la temporada y a tu ruta.</p>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-photo"><img src="https://raw.githubusercontent.com/PhilippeBouteille/aventura-koiaike/main/Experiencias/naturaleza-fotografia.jpg" alt="Viajera fotografiando el valle patagónico" data-alt-es="Viajera fotografiando el valle patagónico" data-alt-en="Traveler photographing the Patagonian valley" data-alt-pt="Viajante fotografando o vale patagônico" style="object-position:50% 70%" loading="lazy"></div>
+      <div class="exp-text">
+        <h3 data-es="Naturaleza &amp; Fotografía" data-en="Nature &amp; Photography" data-pt="Natureza &amp; Fotografia">Naturaleza &amp; Fotografía</h3>
+        <p class="exp-lead" data-es="A veces hay que detenerse" data-en="Sometimes you have to stop" data-pt="Às vezes é preciso parar">A veces hay que detenerse</p>
+        <p data-es="La Patagonia recompensa a quienes observan. Fauna, bosques, amaneceres, cielos infinitos y paisajes que cambian con la luz. Diseñamos jornadas donde existe tiempo para mirar, fotografiar y simplemente disfrutar del lugar." data-en="Patagonia rewards those who observe. Wildlife, forests, sunrises, endless skies and landscapes that change with the light. We design days with time to look, photograph and simply enjoy the place." data-pt="A Patagônia recompensa quem observa. Fauna, bosques, amanheceres, céus infinitos e paisagens que mudam com a luz. Desenhamos jornadas com tempo para olhar, fotografar e simplesmente aproveitar o lugar.">La Patagonia recompensa a quienes observan. Fauna, bosques, amaneceres, cielos infinitos y paisajes que cambian con la luz. Diseñamos jornadas donde existe tiempo para mirar, fotografiar y simplemente disfrutar del lugar.</p>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-photo"><img src="https://raw.githubusercontent.com/PhilippeBouteille/aventura-koiaike/main/Experiencias/patagonia-en-familia.jpg" alt="Familia caminando en un mirador sobre el valle patagónico" data-alt-es="Familia caminando en un mirador sobre el valle patagónico" data-alt-en="Family hiking at a viewpoint above the Patagonian valley" data-alt-pt="Família caminhando em um mirante sobre o vale patagônico" style="object-position:50% 78%" loading="lazy"></div>
+      <div class="exp-text">
+        <h3 data-es="Patagonia en Familia" data-en="Patagonia for Families" data-pt="Patagônia em Família">Patagonia en Familia</h3>
+        <p class="exp-lead" data-es="Una aventura para recordar juntos" data-en="An adventure to remember together" data-pt="Uma aventura para lembrar juntos">Una aventura para recordar juntos</p>
+        <p data-es="Viajar con niños o adolescentes cambia el ritmo, pero no disminuye la aventura. Adaptamos recorridos, caminatas y actividades a las edades e intereses de cada familia para que la Patagonia sea una experiencia entretenida para todos." data-en="Traveling with kids or teenagers changes the pace, but not the adventure. We adapt routes, hikes and activities to each family's ages and interests so Patagonia is an enjoyable experience for everyone." data-pt="Viajar com crianças ou adolescentes muda o ritmo, mas não diminui a aventura. Adaptamos roteiros, caminhadas e atividades às idades e interesses de cada família para que a Patagônia seja uma experiência divertida para todos.">Viajar con niños o adolescentes cambia el ritmo, pero no disminuye la aventura. Adaptamos recorridos, caminatas y actividades a las edades e intereses de cada familia para que la Patagonia sea una experiencia entretenida para todos.</p>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-photo"><img src="https://raw.githubusercontent.com/PhilippeBouteille/aventura-koiaike/main/Experiencias/experiencias-especiales.jpg" alt="Pareja en bicicleta por un camino rural de Aysén" data-alt-es="Pareja en bicicleta por un camino rural de Aysén" data-alt-en="Couple cycling on a rural road in Aysén" data-alt-pt="Casal pedalando por uma estrada rural em Aysén" style="object-position:50% 50%" loading="lazy"></div>
+      <div class="exp-text">
+        <h3 data-es="Experiencias Especiales" data-en="Special Experiences" data-pt="Experiências Especiais">Experiencias Especiales</h3>
+        <p class="exp-lead" data-es="Porque algunos viajes tienen una historia detrás" data-en="Because some trips have a story behind them" data-pt="Porque algumas viagens têm uma história por trás">Porque algunos viajes tienen una historia detrás</p>
+        <p data-es="Una celebración, un aniversario, una escapada en pareja, un grupo de amigos o simplemente ese viaje que llevas años imaginando. Cuéntanos qué quieres vivir y veremos cómo convertirlo en una experiencia realmente tuya." data-en="A celebration, an anniversary, a getaway as a couple, a group of friends, or simply that trip you've been imagining for years. Tell us what you want to experience and we'll figure out how to make it truly yours." data-pt="Uma celebração, um aniversário, uma escapada a dois, um grupo de amigos ou simplesmente aquela viagem que você vem imaginando há anos. Conte-nos o que você quer viver e veremos como transformar isso em uma experiência realmente sua.">Una celebración, un aniversario, una escapada en pareja, un grupo de amigos o simplemente ese viaje que llevas años imaginando. Cuéntanos qué quieres vivir y veremos cómo convertirlo en una experiencia realmente tuya.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-close reveal">
+    <h3 data-es="¿Y si quiero un poco de todo?" data-en="What if I want a bit of everything?" data-pt="E se eu quiser um pouco de tudo?">¿Y si quiero un poco de todo?</h3>
+    <p class="exp-close-lead" data-es="Perfecto." data-en="Perfect." data-pt="Perfeito.">Perfecto.</p>
+    <p data-es="Una navegación puede terminar frente a una buena mesa, un trekking puede llevarnos a un lugar que nunca imaginaste y un viaje por carretera puede cambiar porque descubrimos algo interesante en el camino. Así entendemos la Patagonia: menos itinerarios rígidos y más experiencias." data-en="A boat trip can end in front of a great meal, a trek can take us somewhere you never imagined, and a road trip can change because we discover something interesting along the way. That's how we understand Patagonia: fewer rigid itineraries and more experiences." data-pt="Uma navegação pode terminar diante de uma boa mesa, um trekking pode nos levar a um lugar que você nunca imaginou e uma viagem por estrada pode mudar porque descobrimos algo interessante no caminho. É assim que entendemos a Patagônia: menos roteiros rígidos e mais experiências.">Una navegación puede terminar frente a una buena mesa, un trekking puede llevarnos a un lugar que nunca imaginaste y un viaje por carretera puede cambiar porque descubrimos algo interesante en el camino. Así entendemos la Patagonia: menos itinerarios rígidos y más experiencias.</p>
+    <p class="exp-close-note" data-es="No necesitas tener tu viaje resuelto." data-en="You don't need to have your trip figured out." data-pt="Você não precisa ter sua viagem resolvida.">No necesitas tener tu viaje resuelto.</p>
+    <a href="#" id="whatsapp-exp-btn" class="btn" target="_blank" rel="noopener" data-es="Cuéntanos qué tienes en mente" data-en="Tell us what you have in mind" data-pt="Conte-nos o que você tem em mente">Cuéntanos qué tienes en mente</a>
   </div>
 </section>
 
@@ -402,17 +515,15 @@ footer .f-copy{color:rgba(21,26,48,0.55); font-size:.74rem;}
 <section class="contact reveal" id="contacto">
   <div class="contact-inner">
     <p class="section-eyebrow" data-es="Empecemos a planear" data-en="Let's start planning" data-pt="Vamos começar a planejar">Empecemos a planear</p>
-    <h2 data-es="Cuéntanos qué viaje tienes en mente" data-en="Tell us what trip you have in mind" data-pt="Conte-nos que viagem você tem em mente">Cuéntanos qué viaje tienes en mente</h2>
-    <p data-es="Fechas, número de personas, tipo de experiencia — escríbenos y diseñamos juntos los detalles." data-en="Dates, number of people, type of experience — write to us and we'll design the details together." data-pt="Datas, número de pessoas, tipo de experiência — escreva para nós e desenhamos os detalhes juntos.">Fechas, número de personas, tipo de experiencia — escríbenos y diseñamos juntos los detalles.</p>
+    <h2 data-es="Cuéntanos tu idea de viaje" data-en="Tell us your trip idea" data-pt="Conte-nos sua ideia de viagem">Cuéntanos tu idea de viaje</h2>
+    <p data-es="No necesitas tener un itinerario definido. Cuéntanos cuándo vienes, cuántas personas viajan y qué te gustaría conocer o experimentar. Nosotros te ayudamos a construir el resto." data-en="You don't need to have a set itinerary. Tell us when you're coming, how many people are traveling and what you'd like to see or experience. We'll help you build the rest." data-pt="Você não precisa ter um roteiro definido. Conte-nos quando você vem, quantas pessoas viajam e o que gostaria de conhecer ou experimentar. Nós ajudamos você a construir o resto.">No necesitas tener un itinerario definido. Cuéntanos cuándo vienes, cuántas personas viajan y qué te gustaría conocer o experimentar. Nosotros te ayudamos a construir el resto.</p>
     <div class="contact-actions">
-      <a class="btn btn-outline" id="mailto-btn" href="#" data-es="Escribir por correo" data-en="Write an email" data-pt="Escrever um e-mail">Escribir por correo</a>
       <a class="btn btn-outline" id="whatsapp-btn" href="#" target="_blank" rel="noopener" data-es="Escribir por WhatsApp" data-en="Write on WhatsApp" data-pt="Escrever no WhatsApp">Escribir por WhatsApp</a>
+      <a class="btn btn-outline" id="mailto-btn" href="#" data-es="Escribir por correo" data-en="Write an email" data-pt="Escrever um e-mail">Escribir por correo</a>
       <a class="btn btn-outline btn-icon ig-btn" href="https://www.instagram.com/aventurakoiaike/" target="_blank" rel="noopener" aria-label="Instagram">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         <span>Instagram</span>
       </a>
-      <!-- TODO Philippe: 4e bouton (quadrant amarillo) — destination à définir -->
-      <a class="btn btn-outline am-btn" href="#" onclick="event.preventDefault();" aria-disabled="true" data-es="Próximamente" data-en="Coming soon" data-pt="Em breve">Próximamente</a>
     </div>
     <div class="contact-direct">
       <span>info@aventurakoiaike.cl</span>
@@ -444,7 +555,9 @@ function updateContactLinks(lang){
   const subj = encodeURIComponent(mailSubjects[lang] || mailSubjects.es);
   document.getElementById('mailto-btn').href = `mailto:info@aventurakoiaike.cl?subject=${subj}`;
   const wa = encodeURIComponent(waMessages[lang] || waMessages.es);
-  document.getElementById('whatsapp-btn').href = `https://wa.me/56998376591?text=${wa}`;
+  const waUrl = `https://wa.me/56998376591?text=${wa}`;
+  document.getElementById('whatsapp-btn').href = waUrl;
+  document.getElementById('whatsapp-exp-btn').href = waUrl;
 }
 
 // ---- i18n ----
@@ -452,6 +565,9 @@ function applyTranslations(lang){
   document.querySelectorAll('[data-es]').forEach(el => {
     const text = el.dataset[lang] || el.dataset.es;
     if (text !== undefined) el.textContent = text;
+  });
+  document.querySelectorAll('img[data-alt-es]').forEach(img => {
+    img.alt = img.dataset['alt' + lang.charAt(0).toUpperCase() + lang.slice(1)] || img.dataset.altEs;
   });
 }
 function setLang(lang){
@@ -493,6 +609,20 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, {threshold:.15});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ---- experiencias: photo et texte entrent chacun de leur côté au scroll ----
+// rootMargin resserre la zone de déclenchement à la bande centrale de l'écran,
+// pour que l'animation démarre quand la ligne devient réellement visible/lisible,
+// pas dès qu'elle pointe tout en bas de la fenêtre.
+const expObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('in-view');
+      expObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0, rootMargin:"-35% 0px -35% 0px"});
+document.querySelectorAll('.exp-row').forEach(row => expObs.observe(row));
 
 // ---- interactive map ----
 const mapaBase = 'https://raw.githubusercontent.com/PhilippeBouteille/aventura-koiaike/main/Mapa/';
