@@ -655,7 +655,8 @@ document.querySelectorAll('[data-setlang]').forEach(btn => {
   try{
     var saved = localStorage.getItem('koiaike_lang');
     var nav = (navigator.language||'es').slice(0,2);
-    var start = saved || (['es','en','pt'].includes(nav) ? nav : 'es');
+    var isBot = /bot|crawl|spider|slurp|lighthouse|pagespeed|facebookexternalhit|whatsapp/i.test(navigator.userAgent||'');
+    var start = isBot ? 'es' : (saved || (['es','en','pt'].includes(nav) ? nav : 'es'));
     setLang(start);
   }catch(e){ setLang('es'); }
 })();
