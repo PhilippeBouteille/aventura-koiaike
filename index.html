@@ -699,28 +699,10 @@ function openMapModal(key){
 }
 function closeMapModal(){ mapModal.classList.remove('open'); }
 
-// Sur les appareils avec vraie souris (hover), la photo apparaît au survol du point.
-// Sur tactile (pas de hover), on garde le tap pour ouvrir/fermer.
-const supportsHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-let mapHoverTimer = null;
-function cancelMapHoverClose(){ clearTimeout(mapHoverTimer); }
-function scheduleMapHoverClose(){ clearTimeout(mapHoverTimer); mapHoverTimer = setTimeout(closeMapModal, 150); }
-
+// Les points s'ouvrent au clic/tap (souris et tactile). Fermeture : ×, clic sur le fond, ou Échap.
 document.querySelectorAll('.map-pin').forEach(btn => {
-  if(supportsHover){
-    btn.addEventListener('mouseenter', () => { cancelMapHoverClose(); openMapModal(btn.dataset.place); });
-    btn.addEventListener('mouseleave', scheduleMapHoverClose);
-    btn.addEventListener('focus', () => openMapModal(btn.dataset.place));
-    btn.addEventListener('blur', scheduleMapHoverClose);
-  } else {
-    btn.addEventListener('click', () => openMapModal(btn.dataset.place));
-  }
+  btn.addEventListener('click', () => openMapModal(btn.dataset.place));
 });
-if(supportsHover){
-  // le survol de la photo/titre elle-même (pas le fond plein écran) garde la photo ouverte
-  document.querySelector('.map-modal-content').addEventListener('mouseenter', cancelMapHoverClose);
-  document.querySelector('.map-modal-content').addEventListener('mouseleave', scheduleMapHoverClose);
-}
 document.getElementById('mapModalClose').addEventListener('click', closeMapModal);
 mapModal.addEventListener('click', e => { if(e.target === mapModal) closeMapModal(); });
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMapModal(); });
