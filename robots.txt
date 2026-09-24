@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aventurakoiaike.cl/sitemap.xml
+Sitemap: https://www.aventurakoiaike.cl/sitemap.xml
